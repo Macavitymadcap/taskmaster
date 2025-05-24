@@ -1,0 +1,243 @@
+/* Accessibility CSS - Core styles for improved accessibility */
+
+/* Skip link */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--colour-primary);
+    color: var(--colour-background);
+    padding: var(--space-sm);
+    z-index: 100;
+    transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* Improved focus styles */
+:focus-visible {
+    outline: 3px solid var(--colour-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast focus for interactive elements */
+.btn:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+details summary:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible,
+[role="link"]:focus-visible {
+    outline: 3px solid var(--colour-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(74, 110, 181, 0.25);
+}
+
+/* Screen reader only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Make sure focus is visible in high contrast mode */
+@media (forced-colors: active) {
+    :focus {
+        outline: 3px solid CanvasText !important;
+    }
+
+    .btn:focus,
+    a:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 3px solid CanvasText !important;
+        outline-offset: 2px;
+    }
+}
+
+/* Enhanced form error and hint styles */
+.form-error {
+    color: var(--colour-danger);
+    font-size: 0.875rem;
+    margin-top: var(--space-xs);
+}
+
+.form-hint {
+    color: var(--colour-surface-low);
+    font-size: 0.875rem;
+    margin-top: var(--space-xs);
+}
+
+/* Improved form field accessibility */
+[aria-invalid="true"] {
+    border-color: var(--colour-danger) !important;
+    box-shadow: 0 0 0 1px var(--colour-danger) !important;
+}
+
+/* Motion reduction for animations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Checkbox group layout */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin: 0;
+}
+
+/* ARIA tabbed interface */
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    gap: var(--space-xs);
+    border-bottom: 1px solid var(--colour-surface-high);
+    padding-bottom: var(--space-xs);
+}
+
+.tab-button {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.tab-button[aria-selected="true"] {
+    background-color: var(--colour-primary);
+    color: var(--colour-background);
+}
+
+.tab-panel {
+    padding: var(--space-md);
+    border: 1px solid var(--colour-surface-high);
+    border-top: none;
+    margin-top: -1px;
+}
+
+/* Improved tooltip accessibility */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-content {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--colour-surface-highest);
+    color: var(--colour-text);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+
+.tooltip:hover .tooltip-content,
+.tooltip:focus-within .tooltip-content,
+.tooltip-content:focus-within {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* For screen reader announcements */
+.sr-announce {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Better table accessibility */
+th[scope="col"] {
+    text-align: left;
+}
+
+th[scope="row"] {
+    text-align: right;
+}
+
+caption {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: var(--space-sm);
+}
+
+/* Improved accessiblity for icons and SVGs */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    stroke: currentcolor;
+    stroke-width: 2;
+    fill: none;
+    vertical-align: -0.125em;
+}
+
+/* Hide decorative images from screen readers */
+.decorative-img {
+    aria-hidden: true;
+}
+
+/* Improved contrast for placeholder text */
+::placeholder {
+    color: var(--colour-surface-low);
+    opacity: 1;
+}
+
+/* Enhanced form labels */
+label {
+    display: inline-block;
+    margin-bottom: var(--space-xs);
+    font-weight: bold;
+}
+
+/* Better state indication */
+[aria-busy="true"] {
+    cursor: progress;
+}
+
+[aria-disabled="true"],
+[disabled] {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Status messages */
+[role="status"],
+[role="alert"] {
+    border-radius: 4px;
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+}

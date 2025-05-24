@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+
+:root {
+    color-scheme: light dark;
+
+    /* Theme Colors */
+    --colour-text: light-dark(#000000, #ffffff);
+    --colour-surface-lowest: light-dark(#333333, #f0f0f0);
+    --colour-surface-low: light-dark(#666666, #cccccc);
+    --colour-surface-high: light-dark(#999999, #888888);
+    --colour-surface-highest: light-dark(#cccccc, #222222);
+    --colour-background: light-dark(#ffffff, #181a1b);
+    
+    /* Additional accent colors */
+    --colour-primary: light-dark(#4a6eb5, #8cb4ff);
+    --colour-secondary: light-dark(#6b4a8c, #bfa6e0);
+    --colour-success: light-dark(#4a8c64, #7fffd4);
+    --colour-warning: light-dark(#d9a441, #ffe29a);
+    --colour-danger: light-dark(hsl(0, 54%, 54%), #ffb3b3);
+
+    /* Table Colours */
+    --td-border-colour: rgba(55, 55, 55, 0.161);
+    --th-colour: rgba(67, 67, 67, 0.791);
+    --tr-nth-even-colour: rgba(84, 84, 84, 0.728);
+    --tr-nth-odd-colour: rgba(60, 60, 60, 0.945);
+
+    /* Toggle Colours */
+    --colour-switch-toggle: light-dark(#fff, #000);
+
+    /* Switch Component */
+    --switch-background: light-dark(var(--colour-surface-lowest), var(--colour-surface-high));
+    --switch-thumb: light-dark(#ffffff, #181a1b);
+    --switch-checked-background: var(--colour-surface-low);
+    --switch-focus-outline: light-dark(rgb(74, 140, 100), rgb(127, 255, 212));
+    --switch-shadow: light-dark(0 1px 3px rgb(0, 0, 0), 0 1px 3px rgb(255, 255, 255));
+    
+    /* Alert Colors */
+    --colour-alert-primary-bg: light-dark(rgb(74, 110, 181), rgb(140, 180, 255));
+    --colour-alert-secondary-bg: light-dark(rgb(107, 74, 140), rgb(191, 166, 224));
+    --colour-alert-success-bg: light-dark(rgb(74, 140, 100), rgb(127, 255, 212));
+    --colour-alert-warning-bg: light-dark(rgb(217, 164, 65), rgb(255, 226, 154));
+    --colour-alert-danger-bg: light-dark(rgb(201, 74, 74), rgb(255, 179, 179));
+
+    /* Spacing variables */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-xxl: 3rem;
+
+    /* Font variables */
+    --font-family-sans: "Lato", Tahoma, sans-serif;
+    --font-family-serif: "Crimson Text", Georgia, serif;
+    --font-family-mono: "Ubuntu Mono", monospace;
+
+    /* Card structure */
+    --card-padding: var(--space-md);
+    --card-margin: var(--space-md);
+    --card-border-radius: 0.39em;
+    --card-min-width: 10em;
+    --card-border-width: 1px;
+    --card-outline-border-width: 2px;
+    
+    /* Card shadows */
+    --card-box-shadow: 0 8px 16px 0 var(--shadow);
+    --card-hover-box-shadow: var(--shadow);
+    --card-transition-duration: 0.3s;
+    
+    /* Card internal spacing */
+    --card-header-margin-bottom: var(--space-sm);
+    --card-body-margin-bottom: var(--space-sm);
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --td-border-colour: rgba(55, 55, 55, 0.161);
+    --th-colour: rgba(29, 29, 29, 0.539);
+    --tr-nth-even-colour: rgba(84, 84, 84, 0.728);
+    --tr-nth-odd-colour: rgba(60, 60, 60, 0.945);
+
+    --colour-alert-primary-bg: rgba(74, 110, 181, 0.7);
+    --colour-alert-secondary-bg: rgba(107, 74, 140, 0.7);
+    --colour-alert-success-bg: rgba(74, 140, 100, 0.7);
+    --colour-alert-warning-bg: rgba(217, 164, 65, 0.7);
+    --colour-alert-danger-bg: rgba(201, 74, 74, 0.7);
+
+    --shadow: 0 4px 16px 0 rgba(247, 243, 243, 0.297);
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+
+    --td-border-colour: rgba(228, 228, 228, 0.2);
+    --th-colour: rgba(148, 148, 148, 0.791);
+    --tr-nth-even-colour: rgba(191, 191, 191, 0.728);
+    --tr-nth-odd-colour: rgba(219, 219, 219, 0.945);
+
+    --colour-alert-primary-bg: rgba(74, 110, 181, 0.3);
+    --colour-alert-secondary-bg: rgba(107, 74, 140, 0.3);
+    --colour-alert-success-bg: rgba(74, 140, 100, 0.3);
+    --colour-alert-warning-bg: rgba(217, 164, 65, 0.3);
+    --colour-alert-danger-bg: rgba(201, 74, 74, 0.3);
+
+    --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.525);
+}
