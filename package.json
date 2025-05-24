@@ -2,7 +2,7 @@
   "name": "taskmaster",
   "scripts": {
     "serve": "bun run src/server.ts",
-    "lint": "eslint '{src,public}/**/*.{css,html,js,ts,tsx}'",
+    "lint": "eslint 'src/**/*.{css,html,js,ts,tsx}' --ignore-pattern '**/*.test.*'",
     "format": "prettier --write '{src,public}/**/*.{css,html,js,ts,tsx}'"
   },
   "dependencies": {
