@@ -1,5 +1,8 @@
-import { DbContext } from '../context/context';
-import { BaseEntity } from '../entities/base.entity';
+import { DbContext } from "../context";
+
+export interface BaseEntity {
+  id: number;
+}
 
 /**
  * Base Repository class that provides common CRUD operations
@@ -28,7 +31,7 @@ export abstract class BaseRepository<T extends BaseEntity> {
   /**
    * Create a new entity in the database
    */
-  abstract create(entity: Omit<T, 'id'>): T | null;
+  abstract create(entity: Omit<T, "id">): T | null;
 
   /**
    * Read an entity by its ID

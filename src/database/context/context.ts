@@ -1,5 +1,5 @@
-import { Database, SQLQueryBindings } from 'bun:sqlite';
-import { DB_CONFIG } from '../config';
+import { Database, SQLQueryBindings } from "bun:sqlite";
+import { DB_CONFIG } from "../config";
 
 /**
  * Database context class that manages connections and provides
@@ -46,6 +46,17 @@ export class DbContext {
   }
 
   /**
+   * Get the last inserted row ID
+   */
+  public getLastInsertedId(): number | null {
+    const result = this.queryOne<{ last_insert_rowid: number }>(
+      "SELECT last_insert_rowid() as last_insert_rowid;",
+    );
+
+    return result ? result.last_insert_rowid : null;
+  }
+
+  /**
    * Execute SQL statement without returning results
    */
   public execute(sql: string): void {
@@ -71,21 +82,21 @@ export class DbContext {
    * Begin a database transaction
    */
   public beginTransaction(): void {
-    this.db.exec('BEGIN TRANSACTION');
+    this.db.exec("BEGIN TRANSACTION");
   }
 
   /**
    * Commit a database transaction
    */
   public commitTransaction(): void {
-    this.db.exec('COMMIT');
+    this.db.exec("COMMIT");
   }
 
   /**
    * Rollback a database transaction
    */
   public rollbackTransaction(): void {
-    this.db.exec('ROLLBACK');
+    this.db.exec("ROLLBACK");
   }
 
   /**

@@ -1,0 +1,32 @@
+<h2 class="text-center">Tasks</h2>
+
+<fieldset class="card grid">
+  <legend>Filter</legend>
+  <div class="form-group col-6">
+    <label for="search-input" class="form-label">Search</label>
+    <input
+      type="search"
+      class="form-control"
+      id="search-input"
+      placeholder="Search tasks..."
+    />
+  </div>
+
+  <div class="form-group col-6">
+    <label for="search-by" class="form-label">By</label>
+    <select id="search-by" class="form-control">
+      <option value="title">Title</option>
+      <option value="due_date">Due Date</option>
+      <option value="status">Status</option>
+    </select>
+  </div>
+</fieldset>
+
+<section
+  id="results"
+  class="content wrapped-row"
+  hx-get="/html/tasks"
+  hx-trigger="load"
+
+>
+</section>

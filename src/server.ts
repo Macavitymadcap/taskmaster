@@ -1,11 +1,11 @@
-import { type Context, Hono } from "hono";
+import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
-import { data } from "./routes/data";
+import { html } from "./routes/html";
 
 const app = new Hono();
 
 app.use("/*", serveStatic({ root: "public" }));
 
-app.route("/data", data);
+app.route("/html", html);
 
 export default app;

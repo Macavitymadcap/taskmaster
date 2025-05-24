@@ -1,5 +1,4 @@
 <form
-  method="dialog"
   x-data="{
         cancelCreate: () => {
             htmx.find('#create-task-form').reset();
@@ -7,6 +6,9 @@
         },
     }"
   id="create-task-form"
+  hx-post="/html/task"
+  hx-target="#results"
+  hx-swap="afterend"
 >
   <h2 class="card-header">Add New Task</h2>
 
@@ -17,6 +19,7 @@
         type="text"
         class="form-control"
         id="title"
+        name="title"
         placeholder="Task title"
         required
       />
@@ -27,6 +30,7 @@
       <textarea
         class="form-control"
         id="description"
+        name="description"
         placeholder="Task description"
         rows="3"
       ></textarea>
@@ -36,14 +40,14 @@
   <section class="grid">
     <div class="form-group col-6">
       <label for="due-date">Due Date</label>
-      <input type="datetime-local" class="form-control" id="due-date" />
+      <input type="datetime-local" class="form-control" id="due-date" name="due_date" />
     </div>
 
     <div class="form-group col-6">
       <label for="status">Status</label>
-      <select id="status" class="form-control">
+      <select id="status" class="form-control" name="status">
         <option value="pending">Pending</option>
-        <option value="in_progress">In Progress</option>
+        <option value="in-progress">In Progress</option>
         <option value="completed">Completed</option>
       </select>
     </div>
@@ -52,7 +56,7 @@
   <section class="wrapped-row">
     <button
       class="btn btn-icon btn-outline-success"
-      type="dialog"
+      type="submit"
       title="Submit Task"
     >
       <svg
@@ -120,3 +124,5 @@
     </button>
   </section>
 </form>
+
+<div id="create-task-alert"></div>
