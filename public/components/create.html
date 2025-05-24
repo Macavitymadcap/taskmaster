@@ -1,122 +1,122 @@
-<form 
-    method="dialog" 
-    x-data="{
+<form
+  method="dialog"
+  x-data="{
         cancelCreate: () => {
             htmx.find('#create-task-form').reset();
             htmx.find('#create-task-dialog').close();
         },
     }"
-    id="create-task-form"
+  id="create-task-form"
 >
-    <h2 class="card-header">Add New Task</h2>
+  <h2 class="card-header">Add New Task</h2>
 
-    <section class="grid">
-        <div class="form-group col-6">
-            <label for="title">Title</label>
-            <input
-                type="text"
-                class="form-control"
-                id="title"
-                placeholder="Task title"
-                required
-            />
-        </div>
-    
-        <div class="form-group col-6">
-            <label for="description">Description</label>
-            <textarea
-                class="form-control"
-                id="description"
-                placeholder="Task description"
-                rows="3"
-            ></textarea>
-        </div>
-    </section>
+  <section class="grid">
+    <div class="form-group col-6">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="Task title"
+        required
+      />
+    </div>
 
-    <section class="grid">
-        <div class="form-group col-6">
-            <label for="due-date">Due Date</label>
-            <input type="datetime-local" class="form-control" id="due-date" />
-        </div>
-    
-        <div class="form-group col-6">
-            <label for="status">Status</label>
-            <select id="status" class="form-control">
-                <option value="pending">Pending</option>
-                <option value="in_progress">In Progress</option>
-                <option value="completed">Completed</option>
-            </select>
-        </div>
-    </section>
+    <div class="form-group col-6">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        placeholder="Task description"
+        rows="3"
+      ></textarea>
+    </div>
+  </section>
 
-    <section class="wrapped-row">
-        <button
-            class="btn btn-icon btn-outline-success"
-            type="dialog"
-            title="Submit Task"
-        >
-            <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <path d="M5 13l4 4L19 7"></path>
-            </svg>
-        </button>
+  <section class="grid">
+    <div class="form-group col-6">
+      <label for="due-date">Due Date</label>
+      <input type="datetime-local" class="form-control" id="due-date" />
+    </div>
 
-        <button
-            class="btn btn-icon btn-outline-warning"
-            type="reset"
-            title="Reset Form"
-        >
-            <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <path d="M12 1v4"></path>
-                <path d="M12 19v4"></path>
-                <path d="M4.22 4.22l2.83 2.83"></path>
-                <path d="M16.95 16.95l2.83 2.83"></path>
-                <path d="M1 12h4"></path>
-                <path d="M19 12h4"></path>
-                <path d="M4.22 19.78l2.83-2.83"></path>
-                <path d="M16.95 7.05l2.83-2.83"></path>
-            </svg>
-        </button>
+    <div class="form-group col-6">
+      <label for="status">Status</label>
+      <select id="status" class="form-control">
+        <option value="pending">Pending</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+  </section>
 
-        <button
-            class="btn btn-icon btn-outline-danger"
-            type="button"
-            title="Cancel Task Creation"
-            @click="cancelCreate()"
-        >
-            <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <path d="M6 18L18 6"></path>
-                <path d="M6 6l12 12"></path>
-            </svg>
-        </button>
-    </section>
+  <section class="wrapped-row">
+    <button
+      class="btn btn-icon btn-outline-success"
+      type="dialog"
+      title="Submit Task"
+    >
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 13l4 4L19 7"></path>
+      </svg>
+    </button>
+
+    <button
+      class="btn btn-icon btn-outline-warning"
+      type="reset"
+      title="Reset Form"
+    >
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 1v4"></path>
+        <path d="M12 19v4"></path>
+        <path d="M4.22 4.22l2.83 2.83"></path>
+        <path d="M16.95 16.95l2.83 2.83"></path>
+        <path d="M1 12h4"></path>
+        <path d="M19 12h4"></path>
+        <path d="M4.22 19.78l2.83-2.83"></path>
+        <path d="M16.95 7.05l2.83-2.83"></path>
+      </svg>
+    </button>
+
+    <button
+      class="btn btn-icon btn-outline-danger"
+      type="button"
+      title="Cancel Task Creation"
+      @click="cancelCreate()"
+    >
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M6 18L18 6"></path>
+        <path d="M6 6l12 12"></path>
+      </svg>
+    </button>
+  </section>
 </form>

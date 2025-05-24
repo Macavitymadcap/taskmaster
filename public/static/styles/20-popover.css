@@ -1,14 +1,14 @@
 :popover-open {
-    position: fixed;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    max-width: 90vw;
-    max-height: 80vh;
-    overflow-y: auto;
-    margin: 0;
-    padding: var(--space-md);
-    z-index: 1000;
-    max-width: min(90vw, 400px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 0;
+  padding: var(--space-md);
+  z-index: 1000;
+  max-width: min(90vw, 400px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
