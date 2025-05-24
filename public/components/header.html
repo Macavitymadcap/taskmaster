@@ -5,10 +5,32 @@
             Master yours tasks, before they become your master.
         </i>
     </p>
-    <nav>
+    <nav x-data>
         <menu id="main-menu">
-            <li id="home-menu-item">
-                <a href="index.html">Home</a>
+            <li class="form-group">
+                <label for="create-button">
+                    Add Task
+                </label>
+                <button 
+                    class="btn btn-icon btn-outline-primary" 
+                    title="Add new task"
+                    @click="htmx.find('#create-task-dialog').showModal()"
+                >
+                    <svg
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
             </li>
 
             <li>

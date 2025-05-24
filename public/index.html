@@ -29,12 +29,24 @@
         >
         </header>
 
+        <dialog
+            id="create-task-dialog"
+            class="card"
+            hx-get="components/create.html"
+            hx-trigger="revealed"
+        >
+        </dialog>
+
         <main 
             id="main-content" 
             class="container"
-            hx-get="pages/home.html"
-            hx-trigger="load"
         >
+            <section
+                hx-get="components/search.html"
+                hx-trigger="revealed"
+                class="content"
+            >
+            </section>
         </main>
 
         <footer

@@ -138,6 +138,7 @@ section {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: var(--space-sm);
+    align-items: start;
 }
 
 /* Make a single .card in a .grid span all 12 columns */

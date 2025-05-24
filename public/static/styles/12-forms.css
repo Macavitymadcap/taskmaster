@@ -22,6 +22,7 @@ input[type="password"],
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
+input[type="search"],
 textarea,
 select {
     padding: var(--space-sm);
@@ -46,6 +47,7 @@ input[type="password"]:focus,
 input[type="date"]:focus,
 input[type="time"]:focus,
 input[type="datetime-local"]:focus,
+input[type="search"]:focus,
 textarea:focus,
 select:focus {
     border-color: var(--colour-primary); /* Use your primary color variable */

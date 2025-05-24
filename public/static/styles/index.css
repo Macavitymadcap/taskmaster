@@ -13,12 +13,15 @@
 @import url('13-tables.css');
 @import url('14-details.css');
 @import url('15-lists.css');
-@import url('16-misc.css');
-@import url('17-print.css');
-@import url('18-images.css');
-@import url('19-accessibility.css');
+@import url('16-utilities.css');
+@import url('17-anchors.css');
+@import url('18-nav.css');
+@import url('19-dialog.css');
+@import url('20-popover.css');
+@import url('21-paragraphs.css');
+@import url('22-accessibility.css');
 
-/* Responsive Design - large */
+/* Responsive Grid - large */
 @media (max-width: 768px) {
     .col-md-1 {
         grid-column: span 1;
@@ -69,7 +72,7 @@
     }
 }
 
-/* Responsive Design - medium */
+/* Responsive Grid - medium */
 @media (max-width: 576px) {
     .col-sm-1 {
         grid-column: span 1;
@@ -120,25 +123,8 @@
     }
 }
 
-/* Large */
-@media (max-width: 768px) {
-    .wrapped-row {
-        gap: var(--space-sm);
-    }
-
-    .wrapped-row > * {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-
-    .wrapped-row>.card {
-        flex-basis: 48%;
-        max-width: 100%;
-    }
-}
-
 /* Medium */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     .table-responsive {
         overflow-x: auto;
     }
@@ -149,10 +135,10 @@
     th, td {
         padding: var(--space-xs);
     }
-}
+} */
 
 /* Small */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     body {
         padding: var(--space-xs);
         font-size: 0.95rem;
@@ -192,9 +178,10 @@
         padding: var(--space-xs);
     }
 
-        :popover-open {
+    :popover-open {
         margin: 0 auto;
     }
+    
     .wrapped-row {
         flex-direction: column;
         gap: var(--space-xs);
@@ -205,4 +192,4 @@
         min-width: 0;
         max-width: 100%;
     }
-}
+} */
