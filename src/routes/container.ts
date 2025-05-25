@@ -7,7 +7,7 @@ export interface Dependencies {
 export class Container {
   private static instance: Container;
   private dependencies: Map<string, any> = new Map();
-  
+
   private constructor() {
     this.registerDependencies();
   }
@@ -27,10 +27,7 @@ export class Container {
    */
   private registerDependencies(): void {
     // Register repositories
-    this.dependencies.set(
-      'taskRepository',
-      new TaskRepository(DB_CONFIG.path)
-    );
+    this.dependencies.set("taskRepository", new TaskRepository(DB_CONFIG.path));
   }
 
   /**
@@ -55,7 +52,7 @@ export class Container {
    */
   public getDependencies(): Dependencies {
     return {
-      taskRepository: this.get<TaskRepository>('taskRepository'),
+      taskRepository: this.get<TaskRepository>("taskRepository"),
     };
   }
 
@@ -70,14 +67,16 @@ export class Container {
   /**
    * Create a test container with mock dependencies
    */
-  public static createTestContainer(mockDependencies: Partial<Dependencies>): Container {
+  public static createTestContainer(
+    mockDependencies: Partial<Dependencies>,
+  ): Container {
     const container = new Container();
-    
+
     // Override with mock dependencies
     Object.entries(mockDependencies).forEach(([key, value]) => {
       container.set(key, value);
     });
-    
+
     return container;
   }
 }

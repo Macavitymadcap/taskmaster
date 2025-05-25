@@ -19,7 +19,7 @@ describe("FormRoute", () => {
               status: "pending" as const,
               due_date: "2025-12-31",
             }
-          : null
+          : null,
       ),
     };
 
@@ -39,10 +39,10 @@ describe("FormRoute", () => {
   test("should return update form with task data if task exists", async () => {
     // Arrange
     const app = formRoute.getRouter();
-    
+
     // Act
     const response = await app.request("/update/1");
-    
+
     // Assert
     expect(response.status).toBe(200);
     const html = await response.text();
@@ -54,10 +54,10 @@ describe("FormRoute", () => {
   test("should return update form with alert if task does not exist", async () => {
     // Arrange
     const app = formRoute.getRouter();
-    
+
     // Act
     const response = await app.request("/update/999");
-    
+
     // Assert
     expect(response.status).toBe(200);
     const html = await response.text();
@@ -76,7 +76,9 @@ describe("FormRoute", () => {
     expect(response.status).toBe(200);
     const html = await response.text();
     // Check for task ID and "Delete Task" button in the form
-    expect(html).toContain("Are you sure you want to delete task with ID <strong>1</strong>?");
+    expect(html).toContain(
+      "Are you sure you want to delete task with ID <strong>1</strong>?",
+    );
     expect(html).toContain("Delete Task");
     expect(html).not.toContain("Failed to load task with ID 1");
     expect(mockTaskRepository.read).toHaveBeenCalledWith(1);

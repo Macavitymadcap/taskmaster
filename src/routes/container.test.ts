@@ -33,9 +33,11 @@ describe("Container", () => {
   test("should throw if dependency does not exist", () => {
     // Arrange
     const container = Container.getInstance();
-    
+
     // Act & Assert
-    expect(() => container.get("nonExistent")).toThrow("Dependency 'nonExistent' not found");
+    expect(() => container.get("nonExistent")).toThrow(
+      "Dependency 'nonExistent' not found",
+    );
   });
 
   test("should allow setting and getting a dependency", () => {
@@ -74,12 +76,14 @@ describe("Container", () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       close: jest.fn(),
-      test: true
+      test: true,
     } as unknown as TaskRepository;
 
     // Act
-    const testContainer = Container.createTestContainer({ taskRepository: mockRepo });
-    
+    const testContainer = Container.createTestContainer({
+      taskRepository: mockRepo,
+    });
+
     // Assert
     expect(testContainer.get<TaskRepository>("taskRepository")).toBe(mockRepo);
     // Should not affect singleton

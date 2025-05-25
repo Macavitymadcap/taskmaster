@@ -15,15 +15,17 @@ const ReadTask = ({
 }: ReadTaskProps) => {
   const props: { [key: string]: string } = {
     id: `task-${id}`,
-    class: 'card',
+    class: "card",
   };
 
-  const hxOnGetDeleteForm = { 
-    'hx-on:htmx:after-request': 'if(event.detail.successful) { htmx.find("#delete-task-dialog").showModal(); }'
+  const hxOnGetDeleteForm = {
+    "hx-on:htmx:after-request":
+      'if(event.detail.successful) { htmx.find("#delete-task-dialog").showModal(); }',
   };
 
   const hxOnGetUpdateForm = {
-    'hx-on:htmx:after-request': 'if(event.detail.successful) { htmx.find("#update-task-dialog").showModal(); }'
+    "hx-on:htmx:after-request":
+      'if(event.detail.successful) { htmx.find("#update-task-dialog").showModal(); }',
   };
 
   return (
@@ -57,7 +59,7 @@ const ReadTask = ({
           class="btn btn-icon btn-outline-danger"
           hx-get={`/form/delete/${id}`}
           hx-target="#delete-task-dialog"
-          {...hxOnGetDeleteForm} 
+          {...hxOnGetDeleteForm}
         >
           <svg
             aria-hidden="true"
@@ -78,7 +80,9 @@ const ReadTask = ({
 
       <h2 class="card-header text-center">{title}</h2>
 
-      <div class="card-body wrapped-row">{description ? <p>{description}</p> : <br />}</div>
+      <div class="card-body wrapped-row">
+        {description ? <p>{description}</p> : <br />}
+      </div>
 
       <div class="card-footer content wrapped-row">
         <span>

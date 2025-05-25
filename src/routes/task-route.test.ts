@@ -54,7 +54,7 @@ describe("TaskRoute", () => {
   test("should call repository create method when creating task", async () => {
     // Arrange
     const app = taskRoute.getRouter();
-    
+
     const formData = new FormData();
     formData.append("title", "New Task");
     formData.append("description", "New Description");
@@ -75,7 +75,7 @@ describe("TaskRoute", () => {
   test("should call repository read method when getting task by id", async () => {
     // Arrange
     const app = taskRoute.getRouter();
-    
+
     // Act
     const response = await app.request("/1");
 
@@ -99,7 +99,7 @@ describe("TaskRoute", () => {
   test("should call repository delete method when deleting task", async () => {
     // Arrange
     const app = taskRoute.getRouter();
-    
+
     // Act
     const response = await app.request("/1", {
       method: "DELETE",

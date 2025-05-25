@@ -1,6 +1,6 @@
 import { Hono, Context } from "hono";
 import { TaskRepository } from "../database";
-import { type AlertProps} from "../components";
+import { type AlertProps } from "../components";
 import { GetUpdateFormResponse } from "../components/GetUpdateFormResponse";
 import { GetDeleteTaskFormResponse } from "../components/GetDeleteTaskFormResponse";
 import { Container } from "./container";
@@ -8,7 +8,7 @@ import { BaseRoute } from "./base-route";
 
 export class FormRoute extends BaseRoute {
   private taskRepository: TaskRepository;
-  
+
   constructor(container: Container = Container.getInstance()) {
     super({ prefix: "/form" });
     this.taskRepository = container.get<TaskRepository>("taskRepository");
@@ -30,7 +30,10 @@ export class FormRoute extends BaseRoute {
     };
 
     return context.html(
-      GetUpdateFormResponse({ alert: task ? undefined : alert, form: task ? task : undefined })
+      GetUpdateFormResponse({
+        alert: task ? undefined : alert,
+        form: task ? task : undefined,
+      }),
     );
   }
 
@@ -48,7 +51,7 @@ export class FormRoute extends BaseRoute {
       GetDeleteTaskFormResponse({
         alert: task ? undefined : alert,
         form: task ? { taskId: task.id } : undefined,
-      })
+      }),
     );
   }
 }

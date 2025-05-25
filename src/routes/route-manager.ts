@@ -23,7 +23,7 @@ export class RouteManager {
     ];
 
     // Mount routes on app
-    this.routes.forEach(route => {
+    this.routes.forEach((route) => {
       this.app.route(route.getPrefix(), route.getRouter());
     });
   }

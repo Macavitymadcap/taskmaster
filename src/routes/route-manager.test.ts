@@ -6,7 +6,7 @@ describe("RouteManager", () => {
   test("should instantiate with default container and mount routes", () => {
     // Arrange
     const container = Container.createTestContainer({});
-    
+
     // Act
     const manager = new RouteManager(container);
     const app = manager.getApp();
