@@ -15,7 +15,7 @@ const Alert = ({ alertType: alertType, title, message }: AlertProps) => {
       role="alert"
       id={alertId}
       x-ref="alert"
-      x-init={`setTimeout(() =>  $el.remove(), 8000)`}
+      x-init={`setTimeout(() =>  $el.remove(), 5000)`}
       aria-live="assertive"
       x-data
     >

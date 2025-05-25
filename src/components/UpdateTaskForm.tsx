@@ -1,4 +1,4 @@
-interface UpdateFormProps {
+interface UpdateTaskFormProps {
   id: number;
   title: string;
   description?: string;
@@ -6,32 +6,34 @@ interface UpdateFormProps {
   due_date: string;
 }
 
-const UpdateForm = ({
+const UpdateTaskForm = ({
   id,
   title,
   description,
   status,
   due_date,
-}: UpdateFormProps) => {
+}: UpdateTaskFormProps) => {
+    const hxOnUpdateTask = { 
+    'hx-on:htmx:after-request': 'if(event.detail.successful) { this.reset(); htmx.find("#update-task-dialog").close(); }' 
+  };
 
   return (
     <form
-      id={`task-${id}`}
       hx-put={`/htmx/task/${id}`} 
       hx-target={`#task-${id}`} 
       hx-swap="outerHTML"
-      class="card card-outline-primary">
-      <div class="content grid">
-        <span class="col-11">
-            <span class="badge badge-primary">{id}</span>
-        </span>
+      {...hxOnUpdateTask}
+    >
+      <section class=" card-header grid">
+        <span class="badge badge-primary col-1">{id}</span>
+
+        <h2 class="text-center col-10">Update Task</h2>
 
         <button
           title="Cancel Update"
+          type="button"
           class="btn btn-icon btn-outline-danger col-1"
-          hx-get={`/htmx/task/${id}`}
-          hx-target={`#task-${id}`}
-          hx-swap="outerHTML"
+          x-on:click="htmx.find('#update-task-dialog').close();"
         >
           <svg
             aria-hidden="true"
@@ -48,20 +50,20 @@ const UpdateForm = ({
             <path d="M6 6l12 12"></path>
           </svg>
         </button>
-      </div>
+      </section>
       
-      <div class="card-header form-group">
-        <label for={`title-${id}`}>Title</label>
-        <input
-          type="text"
-          id={`title-${id}`}
-          name="title"
-          required
-          value={title}
-        />
-      </div>
 
-      <div class="card-body flex-wrap">
+      <section class="card-body flex-wrap">
+        <div class="form-group">
+          <label for={`title-${id}`}>Title</label>
+          <input
+            type="text"
+            id={`title-${id}`}
+            name="title"
+            required
+            value={title}
+          />
+        </div>
         <div class="form-group">
           <label for={`description-${id}`}>Description</label>
           <textarea
@@ -97,20 +99,21 @@ const UpdateForm = ({
             <option value="in-progress">In Progress</option>
             <option value="pending">Pending</option>
           </select>
-      </div>
+        </div>
+      </section>
 
-      <div class="card-footer">
-
-                  <button
-          title="Submit Update"
-          class="btn btn-outline-primary"
+      <section class="card-footer wrapped-row">
+        <button
+          title="Update Task"
+          type="submit"
+          class="btn btn-outline-secondary"
+          x-on:click="htmx.find('#update-task-dialog').close();"
         >
           Update Task
         </button>
-        </div>
-      </div>
+      </section>
     </form>
   );
 };
 
-export { UpdateForm, type UpdateFormProps };
+export { UpdateTaskForm as UpdateForm, type UpdateTaskFormProps as UpdateFormProps };

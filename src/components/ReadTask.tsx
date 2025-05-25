@@ -24,6 +24,10 @@ const ReadTask = ({
     'hx-on:htmx:after-request': 'if(event.detail.successful) { htmx.find("#delete-task-dialog").showModal(); }'
   };
 
+  const hxOnGetUpdateForm = {
+    'hx-on:htmx:after-request': 'if(event.detail.successful) { htmx.find("#update-task-dialog").showModal(); }'
+  };
+
   return (
     <div {...props}>
       <div class="content grid">
@@ -33,10 +37,10 @@ const ReadTask = ({
 
         <button
           title="Update Task"
-          class="btn btn-icon btn-outline-primary col-1"
+          class="btn btn-icon btn-outline-secondary"
           hx-get={`/htmx/update-form/${id}`}
-          hx-target={`#task-${id}`}
-          hx-swap="outerHTML"
+          hx-target="#update-task-dialog"
+          {...hxOnGetUpdateForm}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +56,7 @@ const ReadTask = ({
 
         <button
           title="Delete Task"
-          class="btn btn-icon btn-outline-danger col-1"
+          class="btn btn-icon btn-outline-danger"
           hx-get={`/htmx/delete-form/${id}`}
           hx-target="#delete-task-dialog"
           {...hxOnGetDeleteForm} 
@@ -76,10 +80,10 @@ const ReadTask = ({
 
       <h2 class="card-header text-center">{title}</h2>
 
-      <div class="card-body">{description ? <p>{description}</p> : <br />}</div>
+      <div class="card-body wrapped-row">{description ? <p>{description}</p> : <br />}</div>
 
-      <div class="card-footer content grid">
-        <span class="col-12">
+      <div class="card-footer content wrapped-row">
+        <span>
           <strong>Due:</strong>
           {` `}
           <span>{new Date(due_date).toLocaleDateString()}</span>
@@ -91,18 +95,15 @@ const ReadTask = ({
             })}
           </span>
         </span>
-
-        <span class="col-12">
-          <span
-            class={`
-              badge
-              ${status === "in-progress" ? "badge-warning" : ""}
-              ${status === "completed" ? "badge-success" : ""}
-              ${status === "pending" ? "badge-secondary" : ""}
-            `}
-          >
-            {status.toUpperCase()}
-          </span>
+        <span
+          class={`
+            badge
+            ${status === "in-progress" ? "badge-warning" : ""}
+            ${status === "completed" ? "badge-success" : ""}
+            ${status === "pending" ? "badge-secondary" : ""}
+          `}
+        >
+          {status.toUpperCase()}
         </span>
       </div>
     </div>

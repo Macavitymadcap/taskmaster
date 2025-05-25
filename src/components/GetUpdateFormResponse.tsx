@@ -1,5 +1,5 @@
 import { Alert, AlertProps } from "./Alert";
-import { UpdateForm, UpdateFormProps } from "./UpdateForm";
+import { UpdateForm, UpdateFormProps } from "./UpdateTaskForm";
 
 interface GetUpdateFormResponseProps {
   alert?: AlertProps;

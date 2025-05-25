@@ -15,26 +15,51 @@ const DeleteTaskForm = ({ taskId }: DeleteTaskFormProps) => {
       hx-swap="beforeend"
       {...hxOnDeleteTask}
     >
-      <h2 class="text-center">Delete Task</h2>
+      <section class="card-header grid">
+      <span class="col-1"></span>
+        <h2 class="text-center col-10">Delete Task</h2>
 
-      <p class="text-center">
-        Are you sure you want to delete task with ID <strong>{taskId}</strong>?
-      </p>
+        <span class="col-1">
+          <button
+              class="btn btn-icon btn-outline-danger col-1"
+              type="button"
+              title="Cancel Task Deletion"
+              x-on:click="htmx.find('#delete-task-dialog').close()"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 18L18 6"></path>
+                <path d="M6 6l12 12"></path>
+              </svg>
+            </button>
+        </span>
 
-      <button 
-        type="submit" 
-        class="btn btn-outline-danger"
-      >
-        Delete Task
-      </button>
+      </section>
 
-      <button 
-        type="button" 
-        class="btn btn-outline-warning" 
-        x-on:click="htmx.find('#delete-task-dialog').close()"
-      >
-        Cancel
-      </button>
+      <section class="card-body">
+        <p class="text-center">
+          Are you sure you want to delete task with ID <strong>{taskId}</strong>?
+        </p>
+      </section>
+
+      <section class="card-footer wrapped-row">
+        <button 
+          type="submit"
+          title="Delete Task"
+          class="btn btn-outline-danger"
+        >
+          Delete Task
+        </button>
+      </section>
     </form>
   );
 };
