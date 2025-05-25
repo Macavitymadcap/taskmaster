@@ -25,7 +25,6 @@
       } else {
         delete this.errors.description;
       }
-      this.isValid = Object.keys(this.errors).length === 0;
     },
     validateDueDate: function() {
       if (!this.dueDate) {
@@ -39,23 +38,36 @@
           delete this.errors.dueDate;
         }
       }
-      this.isValid = Object.keys(this.errors).length === 0;
     },
     validateForm: function() {
       this.validateTitle();
       this.validateDescription();
       this.validateDueDate();
-      const valid = Object.keys(this.errors).length === 0;
 
-      return valid;
+      return this.isValid;
     },
-    resetAndClose: function() {
-      htmx.find('#create-task-form').reset();
-      htmx.find('#create-task-dialog').close();
+    get isValid() {
+      return Object.keys(this.errors).length === 0;
+    },
+    get hasTitleError() {
+      return this.errors.title && this.title.length > 0;
+    },
+    get hasDescriptionError() {
+      return this.errors.description && this.description.length > 0;
+    },
+    get hasDueDateError() {
+      return this.errors.dueDate && this.dueDate.length > 0;
+    },
+    resetValidity: function() {
       this.title = '';
       this.dueDate = '';
       this.description = '';
       this.errors = {};
+    },
+    resetAndClose: function() {
+      htmx.find('#create-task-form').reset();
+      htmx.find('#create-task-dialog').close();
+      this.resetValidity();
     },
   }"
   id="create-task-form"
@@ -103,11 +115,11 @@
         required
         x-model="title"
         @blur="validateTitle()"
-        :class="{ 'form-control': true, 'error': errors.title }"
+        :class="{ 'form-control': true, 'error': hasTitleError }"
       />
       <span 
         class="text-danger text-sm" 
-        x-show="errors.title" 
+        x-show="hasTitleError" 
         x-text="errors.title"
       ></span>
     </div>
@@ -122,11 +134,11 @@
         maxlength="1000"
         x-model="description"
         @blur="validateDescription()"
-        :class="{ 'form-control': true, 'error': errors.description }"
+        :class="{ 'form-control': true, 'error': hasDescriptionError }"
       ></textarea>
       <span 
         class="text-danger text-sm" 
-        x-show="errors.description" 
+        x-show="hasDescriptionError" 
         x-text="errors.description"
       ></span>
     </div>
@@ -143,11 +155,11 @@
         required
         x-model="dueDate"
         @blur="validateDueDate()"
-        :class="{ 'form-control': true, 'error': errors.dueDate }"
+        :class="{ 'form-control': true, 'error': hasDueDateError }"
       />
       <span 
         class="text-danger text-sm" 
-        x-show="errors.dueDate" 
+        x-show="hasDueDateError" 
         x-text="errors.dueDate"
       ></span>
     </div>
@@ -169,7 +181,13 @@
   </section>
 
   <section class="wrapped-row">
-    <button class="btn btn-outline-primary" type="submit" title="Submit Task" :disabled="!isValid">
+    <button 
+      class="btn btn-outline-primary" 
+      type="submit" 
+      title="Submit Task" 
+      :disabled="!isValid"
+      @click="resetValidity()"
+    >
       Create Task
     </button>
 

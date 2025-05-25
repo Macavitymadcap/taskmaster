@@ -10,6 +10,7 @@ import { GetTaskByIDResponse } from "../components/GetTaskByIDResponse";
 import { UpdateTaskResponse } from "../components/UpdateTaskResponse";
 import { Container } from "./container";
 import { BaseRoute } from "./base-route";
+import { CreateTaskValidator, UpdateTaskValidator } from "../validation";
 
 export class TaskRoute extends BaseRoute {
   private taskRepository: TaskRepository;
@@ -30,6 +31,22 @@ export class TaskRoute extends BaseRoute {
   private async createTask(context: Context): Promise<Response> {
     const { title, description, status, due_date } =
       await this.getFormData(context);
+
+    const validity = CreateTaskValidator.create(
+      title,
+      description || undefined,
+      due_date,
+      status as TaskStatus,
+    );
+
+    if (!validity.isValid) {
+      const alert: AlertProps = {
+        alertType: "danger",
+        title: "Validation Error",
+        message: validity.errors.map((e) => e.message).join(", "),
+      };
+      return context.html(CreateTaskResponse({ alert }));
+    }
 
     const task = this.taskRepository.create({
       title,
@@ -83,6 +100,22 @@ export class TaskRoute extends BaseRoute {
     const id = parseInt(context.req.param("id"), 10);
     const { title, description, status, due_date } =
       await this.getFormData(context);
+
+    const validity = UpdateTaskValidator.create(
+      title,
+      description || undefined,
+      due_date,
+      status as TaskStatus,
+    );
+
+    if (!validity.isValid) {
+      const alert: AlertProps = {
+        alertType: "danger",
+        title: "Validation Error",
+        message: validity.errors.map((e) => e.message).join(", "),
+      };
+      return context.html(UpdateTaskResponse({ alert }));
+    }
 
     const task = this.taskRepository.update({
       id,
