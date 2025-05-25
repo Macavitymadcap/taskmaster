@@ -6,7 +6,7 @@
         },
     }"
   id="create-task-form"
-  hx-post="/htmx/task"
+  hx-post="/task"
   hx-target="#tasks"
   hx-swap="beforeend"
   hx-on:htmx:after-request="if(event.detail.successful) { this.reset(); htmx.find('#create-task-dialog').close(); }"

@@ -19,7 +19,7 @@ const UpdateTaskForm = ({
 
   return (
     <form
-      hx-put={`/htmx/task/${id}`} 
+      hx-put={`/task/${id}`} 
       hx-target={`#task-${id}`} 
       hx-swap="outerHTML"
       {...hxOnUpdateTask}

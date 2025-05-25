@@ -10,7 +10,7 @@ const DeleteTaskForm = ({ taskId }: DeleteTaskFormProps) => {
     <form
       id="delete-task-form"
       method="dialog" 
-      hx-delete={`/htmx/task/${taskId}`} 
+      hx-delete={`/task/${taskId}`} 
       hx-target="#alerts" 
       hx-swap="beforeend"
       {...hxOnDeleteTask}

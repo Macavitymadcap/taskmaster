@@ -1,9 +1,7 @@
-import {
+export { DB_CONFIG } from "./config";
+export {
   type TaskEntity,
   TaskRepository,
   type TaskStatus,
 } from "./repositories";
 
-const taskRepository = new TaskRepository();
-
-export { TaskEntity, TaskStatus, taskRepository };

@@ -1,5 +1,3 @@
-import { htmx } from "../routes/htmx";
-
 interface ReadTaskProps {
   id: number;
   title: string;
@@ -38,7 +36,7 @@ const ReadTask = ({
         <button
           title="Update Task"
           class="btn btn-icon btn-outline-secondary"
-          hx-get={`/htmx/update-form/${id}`}
+          hx-get={`/form/update/${id}`}
           hx-target="#update-task-dialog"
           {...hxOnGetUpdateForm}
         >
@@ -57,7 +55,7 @@ const ReadTask = ({
         <button
           title="Delete Task"
           class="btn btn-icon btn-outline-danger"
-          hx-get={`/htmx/delete-form/${id}`}
+          hx-get={`/form/delete/${id}`}
           hx-target="#delete-task-dialog"
           {...hxOnGetDeleteForm} 
         >
