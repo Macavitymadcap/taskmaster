@@ -6,9 +6,10 @@
         },
     }"
   id="create-task-form"
-  hx-post="/html/task"
-  hx-target="#results"
-  hx-swap="afterend"
+  hx-post="/htmx/task"
+  hx-target="#tasks"
+  hx-swap="beforeend"
+  hx-on:htmx:after-request="if(event.detail.successful) { this.reset(); htmx.find('#create-task-dialog').close(); }"
 >
   <h2 class="card-header">Add New Task</h2>
 
@@ -28,7 +29,6 @@
     <div class="form-group col-6">
       <label for="description">Description</label>
       <textarea
-        class="form-control"
         id="description"
         name="description"
         placeholder="Task description"
@@ -40,7 +40,12 @@
   <section class="grid">
     <div class="form-group col-6">
       <label for="due-date">Due Date</label>
-      <input type="datetime-local" class="form-control" id="due-date" name="due_date" />
+      <input
+        type="datetime-local"
+        class="form-control"
+        id="due-date"
+        name="due_date"
+      />
     </div>
 
     <div class="form-group col-6">
@@ -124,5 +129,3 @@
     </button>
   </section>
 </form>
-
-<div id="create-task-alert"></div>

@@ -1,4 +1,6 @@
-export interface ReadTaskProps {
+import { htmx } from "../routes/htmx";
+
+interface ReadTaskProps {
   id: number;
   title: string;
   description?: string;
@@ -6,23 +8,35 @@ export interface ReadTaskProps {
   due_date: string;
 }
 
-export const ReadTask = ({
+const ReadTask = ({
   id,
   title,
   description,
   status,
   due_date,
 }: ReadTaskProps) => {
+  const props: { [key: string]: string } = {
+    id: `task-${id}`,
+    class: 'card',
+  };
+
+  const hxOnGetDeleteForm = { 
+    'hx-on:htmx:after-request': 'if(event.detail.successful) { htmx.find("#delete-task-dialog").showModal(); }'
+  };
+
   return (
-    <div class="card">
+    <div {...props}>
       <div class="content grid">
         <span class="col-10">
           <span class="badge">{id}</span>
         </span>
 
         <button
-          title="Edit Task"
+          title="Update Task"
           class="btn btn-icon btn-outline-primary col-1"
+          hx-get={`/htmx/update-form/${id}`}
+          hx-target={`#task-${id}`}
+          hx-swap="outerHTML"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +53,9 @@ export const ReadTask = ({
         <button
           title="Delete Task"
           class="btn btn-icon btn-outline-danger col-1"
+          hx-get={`/htmx/delete-form/${id}`}
+          hx-target="#delete-task-dialog"
+          {...hxOnGetDeleteForm} 
         >
           <svg
             aria-hidden="true"
@@ -64,7 +81,15 @@ export const ReadTask = ({
       <div class="card-footer content grid">
         <span class="col-12">
           <strong>Due:</strong>
+          {` `}
           <span>{new Date(due_date).toLocaleDateString()}</span>
+          {` `}
+          <span>
+            {new Date(due_date).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
         </span>
 
         <span class="col-12">
@@ -83,3 +108,5 @@ export const ReadTask = ({
     </div>
   );
 };
+
+export { ReadTask, ReadTaskProps };

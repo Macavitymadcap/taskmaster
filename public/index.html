@@ -33,10 +33,21 @@
       hx-trigger="revealed"
     ></dialog>
 
+    <dialog
+      id="delete-task-dialog"
+      class="card"
+    ></dialog>
+
+    <aside 
+      id="alerts" 
+      class="container"
+    ></aside>
+    
     <main id="main-content" class="container">
+
       <section
         hx-get="components/read.html"
-        hx-trigger="revealed"
+        hx-trigger="revealed, taskDeleted from:body"
         class="content"
       ></section>
     </main>

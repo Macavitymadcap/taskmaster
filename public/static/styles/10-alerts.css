@@ -4,10 +4,6 @@
   margin-bottom: var(--space-md);
   border-left: 4px solid var(--colour-surface-lowest);
   color: var(--colour-text);
-
-  button {
-    float: right;
-  }
 }
 
 .alert-primary {

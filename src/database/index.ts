@@ -2,7 +2,7 @@ import {
   type TaskEntity,
   TaskRepository,
   type TaskStatus,
-} from "./repositories/task-repository";
+} from "./repositories";
 
 const taskRepository = new TaskRepository();
 
