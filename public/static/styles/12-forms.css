@@ -186,3 +186,25 @@ label:has(input[type="checkbox"]) {
     display: block;
   }
 }
+
+/* Validation */
+.form-control.error,
+input.error,
+textarea.error,
+select.error {
+  border-color: var(--colour-danger);
+  box-shadow: 0 0 0 3px rgba(201, 74, 74, 0.25);
+}
+
+.text-danger {
+  color: var(--colour-danger);
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.form-group .text-danger {
+  display: block;
+  margin-top: 0.25rem;
+}

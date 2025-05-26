@@ -10,8 +10,8 @@ export const GetDeleteTaskFormResponse = ({
   alert,
   form,
 }: GetDeleteTaskFormResponseProps) => {
-  const alertHtml = alert ? Alert(alert) : '';
-  const formHtml = form ? DeleteTaskForm(form) : '';
+  const alertHtml = alert ? Alert(alert) : "";
+  const formHtml = form ? DeleteTaskForm(form) : "";
   return `
     <div hx-swap-oob="beforeend:#alerts">
       ${alertHtml}

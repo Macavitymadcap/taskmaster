@@ -10,7 +10,7 @@ const Alert = ({ alertType: alertType, title, message }: AlertProps) => {
   const alertId = `alert-${Math.random().toString(36).substring(2, 15)}`;
 
   return (
-    <div 
+    <div
       className={`alert alert-${alertType}`}
       role="alert"
       id={alertId}

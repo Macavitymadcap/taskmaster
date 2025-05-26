@@ -10,8 +10,8 @@ export const GetUpdateFormResponse = ({
   alert,
   form,
 }: GetUpdateFormResponseProps) => {
-  const alertHtml = alert? Alert(alert) : '';
-  const formHtml = form ? UpdateForm(form) : '';
+  const alertHtml = alert ? Alert(alert) : "";
+  const formHtml = form ? UpdateForm(form) : "";
   return `
     <div hx-swap-oob="beforeend:#alerts">
       ${alertHtml}

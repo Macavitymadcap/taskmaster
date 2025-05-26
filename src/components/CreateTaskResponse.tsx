@@ -6,10 +6,13 @@ interface CreateTaskResponseProps {
   task?: ReadTaskProps;
 }
 
-export const CreateTaskResponse = ({ alert, task }: CreateTaskResponseProps) => {
+export const CreateTaskResponse = ({
+  alert,
+  task,
+}: CreateTaskResponseProps) => {
   const alertHtml = Alert(alert);
-  const taskHtml = task ? ReadTask(task) : '';
-  
+  const taskHtml = task ? ReadTask(task) : "";
+
   return `
     <div hx-swap-oob="beforeend:#alerts">
       ${alertHtml}

@@ -1,26 +1,91 @@
 <form
   x-data="{
-        cancelCreate: () => {
-            htmx.find('#create-task-form').reset();
-            htmx.find('#create-task-dialog').close();
-        },
-    }"
+    title: '',
+    description: '',
+    dueDate: '',
+    status: 'pending',
+    errors: {},
+    isValid: false,
+    validateTitle: function() {
+      if (!this.title.trim()) {
+        this.errors.title = 'Title is required';
+      } else if (this.title.trim().length > 255) {
+        this.errors.title = 'Title must be less than 255 characters';
+      } else if (this.title.trim().length < 3) {
+        this.errors.title = 'Title must be at least 3 characters';
+      } else {
+        delete this.errors.title;
+      }
+      this.isValid = Object.keys(this.errors).length === 0;
+    },
+    validateDescription: function () {
+      if (!this.description) return;
+      if (this.description.length > 1000) {
+        this.errors.description = 'Description must be less than 1000 characters';
+      } else {
+        delete this.errors.description;
+      }
+    },
+    validateDueDate: function() {
+      if (!this.dueDate) {
+        this.errors.dueDate = 'Due date is required';
+      } else {
+        const dueDate = new Date(this.dueDate);
+        const now = new Date();
+        if (dueDate < now) {
+          this.errors.dueDate = 'Due date cannot be in the past';
+        } else {
+          delete this.errors.dueDate;
+        }
+      }
+    },
+    validateForm: function() {
+      this.validateTitle();
+      this.validateDescription();
+      this.validateDueDate();
+
+      return this.isValid;
+    },
+    get isValid() {
+      return Object.keys(this.errors).length === 0;
+    },
+    get hasTitleError() {
+      return this.errors.title && this.title.length > 0;
+    },
+    get hasDescriptionError() {
+      return this.errors.description && this.description.length > 0;
+    },
+    get hasDueDateError() {
+      return this.errors.dueDate && this.dueDate.length > 0;
+    },
+    resetValidity: function() {
+      this.title = '';
+      this.dueDate = '';
+      this.description = '';
+      this.errors = {};
+    },
+    resetAndClose: function() {
+      htmx.find('#create-task-form').reset();
+      htmx.find('#create-task-dialog').close();
+      this.resetValidity();
+    },
+  }"
   id="create-task-form"
-  hx-post="/htmx/task"
+  hx-post="/task"
   hx-target="#tasks"
   hx-swap="beforeend"
-  hx-on:htmx:after-request="if(event.detail.successful) { this.reset(); htmx.find('#create-task-dialog').close(); }"
+  hx-on:htmx:after-request="if(event.detail.successful) { htmx.find('#create-task-form').reset(); htmx.find('#create-task-dialog').close(); }"
 >
   <div class="card-header grid">
     <span class="col-1"></span>
-    
-    <h2 class=" text-center col-10">Add New Task</h2>
+
+    <h2 class="text-center col-10">Add New Task</h2>
 
     <button
       class="btn btn-icon btn-outline-danger col-1"
       type="button"
       title="Cancel Task Creation"
-      @click="cancelCreate()"
+      @click="resetAndClose()"
     >
       <svg
         aria-hidden="true"
@@ -44,12 +109,19 @@
       <label for="title">Title</label>
       <input
         type="text"
-        class="form-control"
         id="title"
         name="title"
         placeholder="Task title"
         required
+        x-model="title"
+        @blur="validateTitle()"
+        :class="{ 'form-control': true, 'error': hasTitleError }"
       />
+      <span 
+        class="text-danger text-sm" 
+        x-show="hasTitleError" 
+        x-text="errors.title"
+      ></span>
     </div>
 
     <div class="form-group col-6">
@@ -59,7 +131,16 @@
         name="description"
         placeholder="Task description"
         rows="3"
+        maxlength="1000"
+        x-model="description"
+        @blur="validateDescription()"
+        :class="{ 'form-control': true, 'error': hasDescriptionError }"
       ></textarea>
+      <span 
+        class="text-danger text-sm" 
+        x-show="hasDescriptionError" 
+        x-text="errors.description"
+      ></span>
     </div>
   </section>
 
@@ -71,12 +152,27 @@
         class="form-control"
         id="due-date"
         name="due_date"
+        required
+        x-model="dueDate"
+        @blur="validateDueDate()"
+        :class="{ 'form-control': true, 'error': hasDueDateError }"
       />
+      <span 
+        class="text-danger text-sm" 
+        x-show="hasDueDateError" 
+        x-text="errors.dueDate"
+      ></span>
     </div>
 
     <div class="form-group col-6">
       <label for="status">Status</label>
-      <select id="status" class="form-control" name="status">
+      <select 
+        id="status" 
+        class="form-control" 
+        name="status" 
+        x-model="status" 
+        required
+      >
         <option value="pending">Pending</option>
         <option value="in-progress">In Progress</option>
         <option value="completed">Completed</option>
@@ -85,19 +181,17 @@
   </section>
 
   <section class="wrapped-row">
-    <button
-      class="btn btn-outline-primary"
-      type="submit"
-      title="Submit Task"
+    <button 
+      class="btn btn-outline-primary" 
+      type="submit" 
+      title="Submit Task" 
+      :disabled="!isValid"
+      @click="resetValidity()"
     >
       Create Task
     </button>
 
-    <button
-      class="btn btn-outline-warning"
-      type="reset"
-      title="Reset Form"
-    >
+    <button class="btn btn-outline-warning" type="reset" title="Reset Form">
       Reset Form
     </button>
   </section>

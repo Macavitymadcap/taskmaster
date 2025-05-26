@@ -13,14 +13,15 @@ const UpdateTaskForm = ({
   status,
   due_date,
 }: UpdateTaskFormProps) => {
-    const hxOnUpdateTask = { 
-    'hx-on:htmx:after-request': 'if(event.detail.successful) { this.reset(); htmx.find("#update-task-dialog").close(); }' 
+  const hxOnUpdateTask = {
+    "hx-on:htmx:after-request":
+      'if(event.detail.successful) { this.reset(); htmx.find("#update-task-dialog").close(); }',
   };
 
   return (
     <form
-      hx-put={`/htmx/task/${id}`} 
-      hx-target={`#task-${id}`} 
+      hx-put={`/task/${id}`}
+      hx-target={`#task-${id}`}
       hx-swap="outerHTML"
       {...hxOnUpdateTask}
     >
@@ -51,7 +52,6 @@ const UpdateTaskForm = ({
           </svg>
         </button>
       </section>
-      
 
       <section class="card-body flex-wrap">
         <div class="form-group">
@@ -70,7 +70,9 @@ const UpdateTaskForm = ({
             id={`description-${id}`}
             name="description"
             placeholder="Task description"
-          >{description ?? ""}</textarea>        
+          >
+            {description ?? ""}
+          </textarea>
         </div>
 
         <div class="form-group">
@@ -90,11 +92,7 @@ const UpdateTaskForm = ({
 
         <div class="form-group">
           <label for={`status-${id}`}>Status</label>
-          <select
-            id={`status-${id}`}
-            name="status"
-            value={status}
-          >
+          <select id={`status-${id}`} name="status" value={status}>
             <option value="completed">Completed</option>
             <option value="in-progress">In Progress</option>
             <option value="pending">Pending</option>
@@ -116,4 +114,7 @@ const UpdateTaskForm = ({
   );
 };
 
-export { UpdateTaskForm as UpdateForm, type UpdateTaskFormProps as UpdateFormProps };
+export {
+  UpdateTaskForm as UpdateForm,
+  type UpdateTaskFormProps as UpdateFormProps,
+};
