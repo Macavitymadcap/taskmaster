@@ -58,7 +58,7 @@ const DeleteTaskForm = ({ taskId }: DeleteTaskFormProps) => {
           title="Delete Task"
           class="btn btn-outline-danger"
         >
-          Delete Task
+          Delete 
         </button>
       </section>
     </form>

@@ -106,7 +106,7 @@ const UpdateTaskForm = ({
           type="submit"
           class="btn btn-outline-secondary"
         >
-          Update Task
+          Update
         </button>
       </section>
     </form>

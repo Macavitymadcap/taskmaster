@@ -3,10 +3,6 @@ const CreateTaskForm = () => {
     "hx-on:htmx:after-request": "if(event.detail.successful) { htmx.find('dialog').close(); }",
   }
 
-  const getDueDateDefaultValue = () => {
-    return `${new Date().getFullYear() + 1}-01-01T00:00`
-  }
-
   return (
     <form
       id="create-task-form"
@@ -79,7 +75,6 @@ const CreateTaskForm = () => {
             type="datetime-local"
             id="due-date"
             name="dueDate"
-            value={getDueDateDefaultValue()}
             required
           />
 
@@ -107,13 +102,13 @@ const CreateTaskForm = () => {
         <button
           className="btn btn-outline-success"
           type="submit"
-          title="Submit Task"
+          title="Add Task"
         >
-          Create Task
+          Add
         </button>
 
         <button className="btn btn-outline-warning" type="reset" title="Reset Form">
-          Reset Form
+          Reset
         </button>
       </section>
     </form>

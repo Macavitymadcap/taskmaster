@@ -9,6 +9,21 @@
   color: var(--colour-background);
 }
 
+.badge-low {
+  background-color: var(--colour-surface-low);
+  color: var(--colour-surface-highest);
+}
+
+.badge-high {
+  background-color: var(--colour-surface-high);
+  color: var(--colour-text);
+}
+
+.badge-highest {
+  background-color: var(--colour-surface-highest);
+  color: var(--colour-surface-lowest);
+}
+
 .badge-primary {
   background-color: var(--colour-primary);
 }

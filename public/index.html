@@ -127,6 +127,18 @@
         </li>
       </menu>
     </header>
+    
+    <main id="main-content" class="container">
+      <h2 class="text-center">Your Tasks</h2>
+
+      <section
+        id="tasks"
+        class="content wrapped-row"
+        hx-get="/task"
+        hx-trigger="load once, taskDeleted from:body, taskSearchFailed from:body"
+        hx-indicator="#loading"
+      ></section>
+    </main>
 
     <article id="about" class="card" popover>
       <section class="card-header grid">
@@ -158,44 +170,42 @@
       </section>
 
       <p>
-        A <code>Task</code> consists of:
+        A <b>Task</b> consists of:
       </p>
 
       <ul>
         <li>
-          <code>ID</code>:
-          <span class="badge">REQUIRED</span>
-          A unique identifier for the task. This is automatically generated
-          when a new task is created, and you can search for tasks by
-          this ID.
+          <b>ID</b>:
+          <i>Auto-generated</i>
+          A unique identifier for the task.
         </li>
 
         <li>
-          <code>Title</code>:
-          <span class="badge">REQUIRED</span>
+          <b>Title</b>:
+        <i>Required</i> 
           A brief description of the task.
         </li>
 
         <li>
-          <code>Description</code>: 
-          <span class="badge">OPTIONAL</span>
+          <b>Description</b>:
+          <i>Optional</i>
           A detailed explanation of the task.
         </li>
 
         <li>
-          <code>Due Date</code>:
-          <span class="badge">REQUIRED</span>
-          The date by which the task should be completed. When creating a new
-          task the default is 5 minutes from when create was started.
+          <b>Due Date</b>:
+        <i>Required</i> 
+          The date by which the task should be completed.
         </li>
 
         <li>
-          <code>Status</code>: 
-          <span class="badge">REQUIRED</span>
+          <b>Status</b>: 
+        <i>Required</i> 
           The current state of the task, one of:
           <ul>
             <li>
               <span class="badge badge-secondary">PENDING</span>:
+              <i>Default</i>
               The task has not yet been started.
             </li>
 
@@ -211,23 +221,9 @@
           </ul>
         </li>
       </ul>
-
     </article>
     
     <dialog class="card"></dialog>
-    
-    <main id="main-content" class="container">
-      <h2 class="text-center">Your Tasks</h2>
-
-      <section
-        id="tasks"
-        class="content wrapped-row"
-        hx-get="/task"
-        hx-trigger="load once, taskDeleted from:body, taskSearchFailed from:body"
-        hx-indicator="#loading"
-      ></section>
-      
-    </main>
     
     <aside id="alerts" class="container">
       <div

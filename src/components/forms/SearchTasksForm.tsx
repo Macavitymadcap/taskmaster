@@ -58,7 +58,7 @@ export const SearchTasksForm = () => {
         </button>
 
         <button className="btn btn-outline-warning" type="reset" title="Reset Form">
-          Reset Form
+          Reset
         </button>
       </section>
     </form>
