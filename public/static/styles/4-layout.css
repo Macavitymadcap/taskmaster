@@ -92,6 +92,38 @@ section {
   margin-bottom: var(--space-xl);
 }
 
+.ml-1 {
+  margin-left: var(--space-xs);
+}
+.ml-2 {
+  margin-left: var(--space-sm);
+}
+.ml-3 {
+  margin-left: var(--space-md);
+}
+.ml-4 {
+  margin-left: var(--space-lg);
+}
+.ml-5 {
+  margin-left: var(--space-xl);
+}
+
+.mr-1 {
+  margin-right: var(--space-xs);
+}
+.mr-2 {
+  margin-right: var(--space-sm);
+}
+.mr-3 {
+  margin-right: var(--space-md);
+}
+.mr-4 {
+  margin-right: var(--space-lg);
+}
+.mr-5 {
+  margin-right: var(--space-xl);
+}
+
 .p-0 {
   padding: 0;
 }
@@ -137,7 +169,11 @@ section {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--space-sm);
-  align-items: start;
+  align-items: center;
+
+  * {
+    align-self: center;
+  }
 }
 
 /* Make a single .card in a .grid span all 12 columns */
@@ -193,6 +229,7 @@ section {
   grid-column: span 12;
 }
 
+/* Flex */
 .d-flex {
   display: flex;
 }

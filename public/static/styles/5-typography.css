@@ -74,6 +74,23 @@
   text-transform: capitalize;
 }
 
+.text-wrap {
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.text-break {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
 .text-xs {
   font-size: 0.75rem;
 }

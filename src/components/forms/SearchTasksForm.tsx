@@ -39,8 +39,8 @@ export const SearchTasksForm = () => {
         </button>
       </section>
 
-      <search className="card-body">
-        <div className="form-group">
+      <search className="card-body grid">
+        <div className="form-group col-12">
           <label htmlFor="search">Search by ID</label>
 
           <input

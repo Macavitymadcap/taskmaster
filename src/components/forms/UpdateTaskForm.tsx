@@ -26,7 +26,9 @@ const UpdateTaskForm = ({
       {...hxOnUpdateTask}
     >
       <section class=" card-header grid">
-        <span class="badge badge-secondary col-1">{id}</span>
+        <div class="col-1">
+          <span class="badge badge-secondary">{id}</span>
+        </div>
 
         <h2 class="text-center col-10">Update Task</h2>
 
@@ -53,8 +55,8 @@ const UpdateTaskForm = ({
         </button>
       </section>
 
-      <section class="card-body flex-wrap">
-        <div class="form-group">
+      <section class="card-body grid">
+        <div class="form-group col-12">
           <label for={`title-${id}`}>Title</label>
           <input
             type="text"
@@ -64,7 +66,8 @@ const UpdateTaskForm = ({
             value={title}
           />
         </div>
-        <div class="form-group">
+
+        <div class="form-group col-12">
           <label for={`description-${id}`}>Description</label>
           <textarea
             id={`description-${id}`}
@@ -75,7 +78,7 @@ const UpdateTaskForm = ({
           </textarea>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-12">
           <label for={`due_date-${id}`}>Due Date</label>
           <input
             type="datetime-local"
@@ -90,7 +93,7 @@ const UpdateTaskForm = ({
           />
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-12">
           <label for={`status-${id}`}>Status</label>
           <select id={`status-${id}`} name="status" value={status}>
             <option value="completed">Completed</option>

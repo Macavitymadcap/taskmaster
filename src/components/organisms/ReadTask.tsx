@@ -12,6 +12,7 @@ const hxOnAfterRequestSuccessful = (requestType: 'update' | 'delete' ) => {
     `htmx.removeClass('dialog', 'card-outline-primary')`,
     `htmx.removeClass('dialog', 'card-outline-secondary')`,
     `htmx.removeClass('dialog', 'card-outline-danger')`,
+    `htmx.removeClass('dialog', 'card-outline-success')`,
     `htmx.addClass('dialog', '${requestType === 'update' ? 'card-outline-secondary' : 'card-outline-danger'}')`,
     `htmx.find('dialog').showModal()`
   ];
@@ -104,25 +105,19 @@ const ReadTask = ({
       </div>
 
       <section class="card-footer grid">
-        <div class="col-12 mb-2">
-          <strong>Due:</strong>
-          {` `}
-          <span>{new Date(due_date).toLocaleDateString()}</span>
-          {` `}
-          <span>
-            {new Date(due_date).toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </span>
-        </div>
-
-        <div class="col-12">
+        <div class="col-12 mb-1">
+          <strong>Status:</strong>{` `}
           <span
           class={`badge ${getBadgeClass(status)}`}
           >
             {status.toUpperCase()}
           </span>
+        </div>
+
+        <div class="col-12">
+          <strong>Due Date:</strong>{` `}
+          {`${new Date(due_date).toLocaleDateString()} ${new Date(due_date).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})}`}
+          
         </div>
       </section>
     </div>
