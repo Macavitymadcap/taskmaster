@@ -2,7 +2,7 @@ interface UpdateTaskFormProps {
   id: number;
   title: string;
   description?: string;
-  status: "completed" | "in-progress" | "pending";
+  status: "completed" | "in-progress" | "overdue";
   due_date: string;
 }
 
@@ -26,7 +26,7 @@ const UpdateTaskForm = ({
       {...hxOnUpdateTask}
     >
       <section class=" card-header grid">
-        <span class="badge col-1">{id}</span>
+        <span class="badge badge-secondary col-1">{id}</span>
 
         <h2 class="text-center col-10">Update Task</h2>
 
@@ -95,7 +95,7 @@ const UpdateTaskForm = ({
           <select id={`status-${id}`} name="status" value={status}>
             <option value="completed">Completed</option>
             <option value="in-progress">In Progress</option>
-            <option value="pending">Pending</option>
+            <option value="overdue">overdue</option>
           </select>
         </div>
       </section>

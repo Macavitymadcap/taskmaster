@@ -89,8 +89,8 @@ const CreateTaskForm = () => {
             name="status"
             required
           >
-            <option value="pending">Pending</option>
             <option value="in-progress">In Progress</option>
+            <option value="overdue">Overdue</option>
             <option value="completed">Completed</option>
           </select>
 

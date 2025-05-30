@@ -2,9 +2,38 @@ interface ReadTaskProps {
   id: number;
   title: string;
   description?: string;
-  status: "completed" | "in-progress" | "pending";
+  status: "completed" | "in-progress" | "overdue";
   due_date: string;
 }
+
+const hxOnAfterRequestSuccessful = (requestType: 'update' | 'delete' ) => {
+  const actions = [
+    `htmx.removeClass('card-outline-success')`,
+    `htmx.removeClass('dialog', 'card-outline-primary')`,
+    `htmx.removeClass('dialog', 'card-outline-secondary')`,
+    `htmx.removeClass('dialog', 'card-outline-danger')`,
+    `htmx.addClass('dialog', '${requestType === 'update' ? 'card-outline-secondary' : 'card-outline-danger'}')`,
+    `htmx.find('dialog').showModal()`
+  ];
+
+  return {
+    "hx-on:htmx:after-request":
+      `if(event.detail.successful) { ${actions.join('; ')} }`,
+  };
+};
+
+const getBadgeClass = (status: "completed" | "in-progress" | "overdue") => {
+  switch (status) {
+    case "completed":
+      return "badge-success";
+    case "in-progress":
+      return "badge-warning";
+    case "overdue":
+      return "badge-danger";
+    default:
+      return "";
+  }
+};
 
 const ReadTask = ({
   id,
@@ -17,12 +46,7 @@ const ReadTask = ({
     id: `task-${id}`,
     class: "card",
   };
-
-  const hxOnAfterRequestSuccessful = {
-    "hx-on:htmx:after-request":
-      'if(event.detail.successful) { htmx.find("dialog").showModal(); }',
-  };
-
+  
   return (
     <div {...props}>
       <div class="content grid">
@@ -35,7 +59,7 @@ const ReadTask = ({
           class="btn btn-icon btn-outline-secondary"
           hx-get={`/form/update/${id}`}
           hx-target="dialog"
-          {...hxOnAfterRequestSuccessful}
+          {...hxOnAfterRequestSuccessful('update')}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +78,7 @@ const ReadTask = ({
           class="btn btn-icon btn-outline-danger"
           hx-get={`/form/delete/${id}`}
           hx-target="dialog"
-          {...hxOnAfterRequestSuccessful}
+          {...hxOnAfterRequestSuccessful('delete')}
         >
           <svg
             aria-hidden="true"
@@ -75,12 +99,12 @@ const ReadTask = ({
 
       <h2 class="card-header text-center">{title}</h2>
 
-      <div class="card-body wrapped-row">
+      <div class="card-body">
         {description ? <p>{description}</p> : <br />}
       </div>
 
-      <div class="card-footer content wrapped-row">
-        <span>
+      <section class="card-footer grid">
+        <div class="col-12 mb-2">
           <strong>Due:</strong>
           {` `}
           <span>{new Date(due_date).toLocaleDateString()}</span>
@@ -91,18 +115,16 @@ const ReadTask = ({
               minute: "2-digit",
             })}
           </span>
-        </span>
-        <span
-          class={`
-            badge
-            ${status === "in-progress" ? "badge-warning" : ""}
-            ${status === "completed" ? "badge-success" : ""}
-            ${status === "pending" ? "badge-secondary" : ""}
-          `}
-        >
-          {status.toUpperCase()}
-        </span>
-      </div>
+        </div>
+
+        <div class="col-12">
+          <span
+          class={`badge ${getBadgeClass(status)}`}
+          >
+            {status.toUpperCase()}
+          </span>
+        </div>
+      </section>
     </div>
   );
 };

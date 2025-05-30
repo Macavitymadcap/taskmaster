@@ -36,7 +36,7 @@
             title="Add new task"
             hx-get="/form/create"
             hx-target="dialog"
-            hx-on:htmx:after-request="if (event.detail.successful) { htmx.find('dialog').showModal(); }"
+            hx-on:htmx:after-request="if (event.detail.successful) { htmx.removeClass('dialog', 'card-outline-danger'); htmx.removeClass('card-outline-secondary'); htmx.removeClass('dialog', 'card-outline-primary'); htmx.addClass('dialog', 'card-outline-success'); htmx.find('dialog').showModal(); }"
           >
             <svg
               aria-hidden="true"
@@ -63,7 +63,8 @@
             title="Search tasks"
             hx-get="/form/search"
             hx-target="dialog"
-            hx-on:htmx:after-request="if (event.detail.successful) { htmx.find('dialog').showModal(); }"
+            hx-on:htmx:after-request="if (event.detail.successful) { htmx.removeClass('dialog', 'card-outline-danger'); htmx.removeClass('card-outline-secondary'); htmx.removeClass('dialog', 'card-outline-success'); htmx.addClass('dialog', 'card-outline-primary'); htmx.find('dialog').showModal(); }"
+
           >
 
             <svg
@@ -83,11 +84,11 @@
         </li>
 
         <li class="form-group">
-          <label for="get-all-button">All</label>
+          <label for="get-all-button">Refresh</label>
 
           <button
             class="btn btn-icon btn-outline-warning"
-            title="View all tasks"
+            title="Refresh tasks"
             hx-get="/task"
             hx-target="#tasks"
           >
@@ -102,7 +103,10 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-            <path d="M3 3h18v18H3z"></path>
+          <path d="M23 4v6h-6"></path>
+          <path d="M1 20v-6h6"></path>
+          <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10"></path>
+          <path d="M20.49 15a9 9 0 0 1-14.13 3.36L1 14"></path>
             </svg>
           </button>
         </li>
@@ -202,18 +206,18 @@
           <b>Status</b>: 
         <i>Required</i> 
           The current state of the task, one of:
-          <ul>
-            <li>
-              <span class="badge badge-secondary">PENDING</span>:
-              <i>Default</i>
-              The task has not yet been started.
-            </li>
-
+          <ul>         
             <li>
               <span class="badge badge-warning">IN-PROGRESS</span>:
+              <i>Default</i>
               The task is currently being worked on.
             </li>
-
+            
+            <li>
+              <span class="badge badge-danger">OVERDUE</span>:
+              The task is past its due date and has not been completed.
+            </li>
+            
             <li>
               <span class="badge badge-success">COMPLETED</span>:
               The task has been finished.

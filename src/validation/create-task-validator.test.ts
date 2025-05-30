@@ -17,7 +17,7 @@ describe("CreateTaskValidator", () => {
         title: "Test Task",
         description: undefined,
         dueDate: "2025-12-31T00:00",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -38,7 +38,7 @@ describe("CreateTaskValidator", () => {
         title: "",
         description: undefined,
         dueDate: "2025-12-31T00:00",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -64,7 +64,7 @@ describe("CreateTaskValidator", () => {
         title: "a".repeat(256),
         description: undefined,
         dueDate: "2025-12-31T00:00",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -90,7 +90,7 @@ describe("CreateTaskValidator", () => {
         title: "ab",
         description: undefined,
         dueDate: "2025-12-31T00:00",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -118,7 +118,7 @@ describe("CreateTaskValidator", () => {
         title: "Test Task",
         description: "Short description",
         dueDate: "2025-12-31T00:00",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -139,7 +139,7 @@ describe("CreateTaskValidator", () => {
         title: "Test Task",
         description: "a".repeat(1001),
         dueDate: "2025-12-31T00:00",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -167,7 +167,7 @@ describe("CreateTaskValidator", () => {
         title: "Test Task",
         description: undefined,
         dueDate: "invalid-date",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -195,7 +195,7 @@ describe("CreateTaskValidator", () => {
         title: "Test Task",
         description: undefined,
         dueDate: "2020-12-31T00:00",
-        status: "pending",
+        status: "overdue",
       };
 
       // Act
@@ -304,7 +304,7 @@ describe("CreateTaskValidator", () => {
       title: "Valid Task",
       description: "Short description",
       dueDate: "2025-12-31T00:00",
-      status: "pending" as TaskStatus,
+      status: "overdue" as TaskStatus,
     };
 
     // Act

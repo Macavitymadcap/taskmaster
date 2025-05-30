@@ -1,6 +1,6 @@
 import { BaseEntity, BaseRepository } from "./base-repository";
 
-type TaskStatus = "completed" | "in-progress" | "pending";
+type TaskStatus = "completed" | "overdue" | "in-progress";
 
 interface TaskEntity extends BaseEntity {
   title: string;
@@ -24,7 +24,7 @@ class TaskRepository extends BaseRepository<TaskEntity> {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             description TEXT,
-            status TEXT NOT NULL CHECK (status IN ('completed', 'in-progress', 'pending')),
+            status TEXT NOT NULL CHECK (status IN ('completed', 'in-progress', 'overdue')),
             due_date TEXT NOT NULL
         );`,
     );
