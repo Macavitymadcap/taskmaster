@@ -74,15 +74,6 @@ class UpdateTaskValidator extends BaseValidator<UpdateTaskRequest> {
       this.errors = this.errors.filter((error) => error.field !== "status");
     }
   }
-
-  public static create(
-    title: string,
-    description: string | undefined,
-    dueDate: string,
-    status: TaskStatus,
-  ): UpdateTaskValidator {
-    return new UpdateTaskValidator(title, description, dueDate, status);
-  }
 }
 
 export { UpdateTaskValidator, UpdateTaskRequest };

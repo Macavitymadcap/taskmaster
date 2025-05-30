@@ -1,13 +1,13 @@
-import { Hono, Context } from "hono";
+import { Context } from "hono";
 import { TaskRepository, TaskStatus } from "../database";
 import {
-  type AlertProps,
   Alert,
+  type AlertProps,
   CreateTaskResponse,
+  GetTaskByIDResponse, 
   ReadTask,
+  UpdateTaskResponse 
 } from "../components";
-import { GetTaskByIDResponse } from "../components/GetTaskByIDResponse";
-import { UpdateTaskResponse } from "../components/UpdateTaskResponse";
 import { Container } from "./container";
 import { BaseRoute } from "./base-route";
 import { CreateTaskValidator, UpdateTaskValidator } from "../validation";
@@ -32,7 +32,7 @@ export class TaskRoute extends BaseRoute {
     const { title, description, status, due_date } =
       await this.getFormData(context);
 
-    const validity = CreateTaskValidator.create(
+    const validity = new CreateTaskValidator(
       title,
       description || undefined,
       due_date,
@@ -101,7 +101,7 @@ export class TaskRoute extends BaseRoute {
     const { title, description, status, due_date } =
       await this.getFormData(context);
 
-    const validity = UpdateTaskValidator.create(
+    const validity = new UpdateTaskValidator(
       title,
       description || undefined,
       due_date,

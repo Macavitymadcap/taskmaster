@@ -1,17 +1,17 @@
-import { Alert, AlertProps } from "./Alert";
-import { UpdateForm, UpdateFormProps } from "./UpdateTaskForm";
+import { Alert, AlertProps } from "../organisms";
+import { UpdateTaskForm, UpdateTaskFormProps } from "../forms";
 
 interface GetUpdateFormResponseProps {
   alert?: AlertProps;
-  form?: UpdateFormProps;
+  form?: UpdateTaskFormProps;
 }
 
-export const GetUpdateFormResponse = ({
+export const GetUpdateTaskFormResponse = ({
   alert,
   form,
 }: GetUpdateFormResponseProps) => {
   const alertHtml = alert ? Alert(alert) : "";
-  const formHtml = form ? UpdateForm(form) : "";
+  const formHtml = form ? UpdateTaskForm(form) : "";
   return `
     <div hx-swap-oob="beforeend:#alerts">
       ${alertHtml}

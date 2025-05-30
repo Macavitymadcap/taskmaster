@@ -1,5 +1,9 @@
-import { ReadTask, ReadTaskProps } from "./ReadTask";
-import { Alert, AlertProps } from "./Alert";
+import { 
+  Alert, 
+  type AlertProps,
+  ReadTask, 
+  type ReadTaskProps,
+} from "../organisms";
 
 interface CreateTaskResponseProps {
   alert: AlertProps;

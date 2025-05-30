@@ -115,6 +115,6 @@ const UpdateTaskForm = ({
 };
 
 export {
-  UpdateTaskForm as UpdateForm,
-  type UpdateTaskFormProps as UpdateFormProps,
+  UpdateTaskForm,
+  type UpdateTaskFormProps,
 };
