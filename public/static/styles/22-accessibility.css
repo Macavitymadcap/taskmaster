@@ -6,7 +6,6 @@
   top: -40px;
   left: 0;
   background: var(--colour-primary);
-  color: var(--colour-background);
   padding: var(--space-sm);
   z-index: 100;
   transition: top 0.2s ease;
@@ -14,6 +13,14 @@
 
 .skip-to-content:focus {
   top: 0;
+}
+
+.skip-to-content:visited {
+  color: var(--colour-background);
+}
+
+.skip-to-content:active {
+  color: var(--colour-surface-low);
 }
 
 /* Improved focus styles */

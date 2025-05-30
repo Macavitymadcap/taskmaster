@@ -1,13 +1,4 @@
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: var(--space-md) 0;
-  width: 100%;
-}
-
-nav menu {
+menu {
   display: flex;
   width: 100%;
   list-style: none;
@@ -16,14 +7,14 @@ nav menu {
   flex-wrap: wrap;
   flex-direction: row;
   margin: 0;
-  padding: 0;
+  padding: var(--space-md);
 }
 
-nav li {
+menu li {
   margin: 0 var(--space-sm);
 }
 
-nav li.form-group {
+menu li.form-group {
   display: flex;
   align-items: center;
   margin: 0 var(--space-sm);

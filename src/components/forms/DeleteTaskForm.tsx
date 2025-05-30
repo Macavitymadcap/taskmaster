@@ -5,7 +5,7 @@ interface DeleteTaskFormProps {
 const DeleteTaskForm = ({ taskId }: DeleteTaskFormProps) => {
   const hxOnDeleteTask = {
     "hx-on:htmx:after-request":
-      'if(event.detail.successful) { this.reset(); htmx.find("#delete-task-dialog").close(); }',
+      'if(event.detail.successful) { this.reset(); htmx.find("dialog").close(); }',
   };
   return (
     <form
@@ -25,7 +25,7 @@ const DeleteTaskForm = ({ taskId }: DeleteTaskFormProps) => {
             class="btn btn-icon btn-outline-danger col-1"
             type="button"
             title="Cancel Task Deletion"
-            x-on:click="htmx.find('#delete-task-dialog').close()"
+            x-on:click="htmx.find('dialog').close()"
           >
             <svg
               aria-hidden="true"

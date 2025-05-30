@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeEach, mock } from "bun:test";
 import { FormRoute } from "./form-route";
-import { TaskRepository } from "../database";
-import { Container } from "./container";
+import { TaskRepository } from "../../database";
+import { Container } from "../container/container";
 
 describe("FormRoute", () => {
   let mockTaskRepository: Partial<TaskRepository>;

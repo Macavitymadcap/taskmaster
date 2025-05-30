@@ -18,14 +18,9 @@ const ReadTask = ({
     class: "card",
   };
 
-  const hxOnGetDeleteForm = {
+  const hxOnAfterRequestSuccessful = {
     "hx-on:htmx:after-request":
-      'if(event.detail.successful) { htmx.find("#delete-task-dialog").showModal(); }',
-  };
-
-  const hxOnGetUpdateForm = {
-    "hx-on:htmx:after-request":
-      'if(event.detail.successful) { htmx.find("#update-task-dialog").showModal(); }',
+      'if(event.detail.successful) { htmx.find("dialog").showModal(); }',
   };
 
   return (
@@ -39,8 +34,8 @@ const ReadTask = ({
           title="Update Task"
           class="btn btn-icon btn-outline-secondary"
           hx-get={`/form/update/${id}`}
-          hx-target="#update-task-dialog"
-          {...hxOnGetUpdateForm}
+          hx-target="dialog"
+          {...hxOnAfterRequestSuccessful}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,8 +53,8 @@ const ReadTask = ({
           title="Delete Task"
           class="btn btn-icon btn-outline-danger"
           hx-get={`/form/delete/${id}`}
-          hx-target="#delete-task-dialog"
-          {...hxOnGetDeleteForm}
+          hx-target="dialog"
+          {...hxOnAfterRequestSuccessful}
         >
           <svg
             aria-hidden="true"

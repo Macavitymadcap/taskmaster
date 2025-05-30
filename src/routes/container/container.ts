@@ -1,4 +1,4 @@
-import { TaskRepository, DB_CONFIG } from "../database";
+import { TaskRepository, DB_CONFIG } from "../../database";
 
 export interface Dependencies {
   taskRepository: TaskRepository;

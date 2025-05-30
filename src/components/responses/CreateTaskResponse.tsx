@@ -1,12 +1,16 @@
-import { ReadTask, ReadTaskProps } from "./ReadTask";
-import { Alert, AlertProps } from "./Alert";
+import { 
+  Alert, 
+  type AlertProps,
+  ReadTask, 
+  type ReadTaskProps,
+} from "../organisms";
 
 interface CreateTaskResponseProps {
   alert: AlertProps;
   task?: ReadTaskProps;
 }
 
-export const CreateTaskResponse = ({
+const CreateTaskResponse = ({
   alert,
   task,
 }: CreateTaskResponseProps) => {
@@ -20,3 +24,5 @@ export const CreateTaskResponse = ({
     ${taskHtml}
   `;
 };
+
+export { CreateTaskResponse };

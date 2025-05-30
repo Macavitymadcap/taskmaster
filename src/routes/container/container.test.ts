@@ -2,7 +2,7 @@ import { describe, test, afterEach } from "bun:test";
 import { expect, jest } from "bun:test";
 
 import { Container } from "./container";
-import { TaskRepository } from "../database";
+import { TaskRepository } from "../../database";
 
 describe("Container", () => {
   afterEach(() => {

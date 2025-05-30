@@ -6,12 +6,10 @@ import {
   afterAll,
   beforeEach,
 } from "bun:test";
-import { TaskRoute } from "./task-route";
-import { FormRoute } from "./form-route";
+import { TaskRoute } from "./task";
+import { FormRoute } from "./form";
 import { Container } from "./container";
-import { TaskRepository } from "../database";
-import { DB_CONFIG } from "../database/config";
-import { DbContext } from "../database/context";
+import { TaskRepository, DB_CONFIG, DbContext } from "../database";
 
 describe("Route Integration Tests", () => {
   let container: Container;
@@ -52,7 +50,7 @@ describe("Route Integration Tests", () => {
     formData.append("title", "Integration Test Task");
     formData.append("description", "Testing integration");
     formData.append("status", "pending");
-    formData.append("due_date", "2025-12-31");
+    formData.append("dueDate", "2025-12-31");
 
     const createResponse = await taskApp.request("/", {
       method: "POST",

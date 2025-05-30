@@ -1,5 +1,5 @@
-import { Alert, type AlertProps } from "./Alert";
-import { DeleteTaskForm, type DeleteTaskFormProps } from "./DeleteTaskForm";
+import { Alert, type AlertProps } from "../organisms";
+import { DeleteTaskForm, type DeleteTaskFormProps } from "../forms";
 
 interface GetDeleteTaskFormResponseProps {
   alert?: AlertProps;
