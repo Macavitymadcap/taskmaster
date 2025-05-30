@@ -46,7 +46,6 @@ const ReadTask = ({
     id: `task-${id}`,
     class: "card",
   };
-  
   return (
     <div {...props}>
       <div class="content grid">
@@ -60,6 +59,7 @@ const ReadTask = ({
           hx-get={`/form/update/${id}`}
           hx-target="dialog"
           {...hxOnAfterRequestSuccessful('update')}
+
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
