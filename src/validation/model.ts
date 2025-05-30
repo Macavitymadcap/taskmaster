@@ -8,8 +8,8 @@ interface ValidationResult {
   errors: ValidationError[];
 }
 
-type TaskStatus = "pending" | "in-progress" | "completed";
+type TaskStatus = "overdue" | "in-progress" | "completed";
 
-const VALID_STATUSES: TaskStatus[] = ["pending", "in-progress", "completed"];
+const VALID_STATUSES: TaskStatus[] = ["overdue", "in-progress", "completed"];
 
 export { ValidationError, ValidationResult, TaskStatus, VALID_STATUSES };

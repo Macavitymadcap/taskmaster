@@ -15,14 +15,14 @@ describe("TaskRoute", () => {
         id: 1,
         title: "Test Task",
         description: "Test Description",
-        status: "pending" as const,
+        status: "overdue" as const,
         due_date: "2025-12-31",
       })),
       read: mock((id: number) => ({
         id,
         title: "Test Task",
         description: "Test Description",
-        status: "pending" as const,
+        status: "overdue" as const,
         due_date: "2025-12-31",
       })),
       readAll: mock(() => []),
@@ -58,7 +58,7 @@ describe("TaskRoute", () => {
     const formData = new FormData();
     formData.append("title", "New Task");
     formData.append("description", "New Description");
-    formData.append("status", "pending");
+    formData.append("status", "overdue");
     formData.append("dueDate", "2025-12-31");
 
     // Act

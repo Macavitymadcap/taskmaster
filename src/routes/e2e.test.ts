@@ -49,7 +49,7 @@ describe("Route Integration Tests", () => {
     const formData = new FormData();
     formData.append("title", "Integration Test Task");
     formData.append("description", "Testing integration");
-    formData.append("status", "pending");
+    formData.append("status", "overdue");
     formData.append("dueDate", "2025-12-31");
 
     const createResponse = await taskApp.request("/", {
@@ -77,7 +77,7 @@ describe("Route Integration Tests", () => {
     const task = taskRepository.create({
       title: "Task to Update",
       description: "Will be updated",
-      status: "pending",
+      status: "overdue",
       due_date: "2025-12-31",
     });
 

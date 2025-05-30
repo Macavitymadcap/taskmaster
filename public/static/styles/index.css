@@ -16,6 +16,7 @@
 @import url("16-utilities.css");
 @import url("17-anchors.css");
 @import url("18-menu.css");
+@import url("18-menu.css");
 @import url("19-dialog.css");
 @import url("20-popover.css");
 @import url("21-paragraphs.css");
@@ -121,5 +122,14 @@
 
   .col-sm-12 {
     grid-column: span 12;
+  }
+}
+
+/* Ensure dialog content doesn't overflow on small screens */
+@media (max-width: 576px) {
+  dialog {
+    width: 95vw;
+    max-height: 85vh;
+    padding: var(--space-sm);
   }
 }

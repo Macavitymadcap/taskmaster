@@ -39,8 +39,8 @@ export const SearchTasksForm = () => {
         </button>
       </section>
 
-      <search className="card-body">
-        <div className="form-group">
+      <search className="card-body grid">
+        <div className="form-group col-12">
           <label htmlFor="search">Search by ID</label>
 
           <input
@@ -58,7 +58,7 @@ export const SearchTasksForm = () => {
         </button>
 
         <button className="btn btn-outline-warning" type="reset" title="Reset Form">
-          Reset Form
+          Reset
         </button>
       </section>
     </form>

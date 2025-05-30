@@ -15,7 +15,7 @@ const sampleTask = (
 ): Omit<TaskEntity, "id"> => ({
   title: "Test Task",
   description: "A test task",
-  status: "pending",
+  status: "in-progress",
   due_date: "2025-12-31",
   ...overrides,
 });
@@ -162,7 +162,7 @@ describe("TaskRepository", () => {
       const nonExistentTask: TaskEntity = {
         id: 999,
         title: "Non-existent",
-        status: "pending",
+        status: "in-progress",
         due_date: "2025-12-31",
       };
 

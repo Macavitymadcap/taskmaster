@@ -47,39 +47,29 @@
   border-color: var(--colour-danger);
 }
 
-/* Outline variants */
-.card-outline {
-  background-color: transparent;
-}
-
 .card-outline-primary {
   border: var(--card-outline-border-width) solid var(--colour-primary);
   color: var(--colour-primary);
-  background-color: transparent;
 }
 
 .card-outline-secondary {
   border: var(--card-outline-border-width) solid var(--colour-secondary);
   color: var(--colour-secondary);
-  background-color: transparent;
 }
 
 .card-outline-success {
   border: var(--card-outline-border-width) solid var(--colour-success);
   color: var(--colour-success);
-  background-color: transparent;
 }
 
 .card-outline-warning {
   border: var(--card-outline-border-width) solid var(--colour-warning);
   color: var(--colour-warning);
-  background-color: transparent;
 }
 
 .card-outline-danger {
   border: var(--card-outline-border-width) solid var(--colour-danger);
   color: var(--colour-danger);
-  background-color: transparent;
 }
 
 /* Card internal elements */
@@ -93,6 +83,6 @@
 }
 
 .card-footer {
-  margin-top: auto;
+  margin-bottom: 0;
   font-size: 0.875rem;
 }
