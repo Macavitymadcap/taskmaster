@@ -105,7 +105,7 @@ const CreateTaskForm = () => {
 
       <section className="card-footer wrapped-row">
         <button
-          className="btn btn-outline-primary"
+          className="btn btn-outline-success"
           type="submit"
           title="Submit Task"
         >

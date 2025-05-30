@@ -12,7 +12,8 @@ export const SearchTasksForm = () => {
       {...hxOnSearchSubmitted}
     >
       <section class=" card-header grid">
-        <h2 class="text-center col-11">Search Tasks</h2>
+        <span class="col-1"></span>
+        <h2 class="text-center col-10">Search Tasks</h2>
 
         <button
           title="Cancel Update"
@@ -51,9 +52,13 @@ export const SearchTasksForm = () => {
         </div>
       </search>
 
-      <section className="card-footer">
-        <button type="submit" className="btn btn-primary">
+      <section className="card-footer wrapped-row">
+        <button type="submit" className="btn btn-outline-primary">
           Search
+        </button>
+
+        <button className="btn btn-outline-warning" type="reset" title="Reset Form">
+          Reset Form
         </button>
       </section>
     </form>

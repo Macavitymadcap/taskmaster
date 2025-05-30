@@ -26,7 +26,7 @@ const UpdateTaskForm = ({
       {...hxOnUpdateTask}
     >
       <section class=" card-header grid">
-        <span class="badge badge-primary col-1">{id}</span>
+        <span class="badge col-1">{id}</span>
 
         <h2 class="text-center col-10">Update Task</h2>
 
