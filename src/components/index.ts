@@ -14,9 +14,11 @@ export {
 
 export { 
   CreateTaskResponse,
+  GetCreateTaskFormResponse,
   GetDeleteTaskFormResponse,
   GetTaskByIDResponse,
   GetUpdateTaskFormResponse,
+  GetSearchTasksFormResponse,
   UpdateTaskResponse
 } from "./responses";
 

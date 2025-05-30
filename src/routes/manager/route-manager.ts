@@ -1,8 +1,8 @@
 import { Hono } from "hono";
-import { BaseRoute } from "./base-route";
-import { TaskRoute } from "./task-route";
-import { FormRoute } from "./form-route";
-import { Container } from "./container";
+import { BaseRoute } from "../base-route";
+import { TaskRoute } from "../task";
+import { FormRoute } from "../form";
+import { Container } from "../container";
 
 export class RouteManager {
   private app: Hono;

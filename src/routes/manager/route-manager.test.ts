@@ -1,6 +1,6 @@
 import { describe, test, expect, mock } from "bun:test";
 import { RouteManager } from "./route-manager";
-import { Container } from "./container";
+import { Container } from "../container";
 
 describe("RouteManager", () => {
   test("should instantiate with default container and mount routes", () => {

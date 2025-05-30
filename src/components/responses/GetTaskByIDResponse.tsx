@@ -14,10 +14,12 @@ export const GetTaskByIDResponse = ({
   alert,
   task,
 }: GetTaskByIDResponseProps) => {
-  return (
-    <>
-      {alert && <Alert {...alert} />}
-      {task && <ReadTask {...task} />}
-    </>
-  );
+  const alertHtml = alert ? Alert(alert) : "";
+  const taskHtml = task ? ReadTask(task) : "";
+  return `
+    <div hx-swap-oob="beforeend:#alerts">
+      ${alertHtml}
+    </div>
+    ${taskHtml}
+  `;
 };

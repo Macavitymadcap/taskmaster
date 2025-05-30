@@ -1,1 +1,1 @@
-export { RouteManager } from "./route-manager";
+export { RouteManager } from "./manager";

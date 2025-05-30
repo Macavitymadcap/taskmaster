@@ -22,69 +22,216 @@
 
     <header id="header" class="container">
       <h1 class="text-center">Task Master</h1>
-      <p class="text-center">
-        <i> Master your tasks before they become your master.</i>
-      </p>
-      <nav x-data>
-        <menu id="main-menu">
-          <li class="form-group">
-            <label for="create-button"> Add Task </label>
-            <button
-              class="btn btn-icon btn-outline-primary"
-              title="Add new task"
-              @click="htmx.find('#create-task-dialog').showModal()"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </button>
-          </li>
 
-          <li>
-            <label for="theme-switch" title="Toggle light/dark mode">
-              Theme
-              <input type="checkbox" class="switch" id="theme-switch" />
-            </label>
-          </li>
-        </menu>
-      </nav>
+      <p class="text-center">
+        <i>Master your tasks before they become your master.</i>
+      </p>
+
+      <menu id="main-menu">
+        <li class="form-group">
+          <label for="create-button">Add</label>
+
+          <button
+            class="btn btn-icon btn-outline-success"
+            title="Add new task"
+            hx-get="/form/create"
+            hx-target="dialog"
+            hx-on:htmx:after-request="if (event.detail.successful) { htmx.find('dialog').showModal(); }"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+        </li>
+
+        <li class="form-group">
+          <label for="search-button">Search</label>
+
+          <button
+            class="btn btn-icon btn-outline-primary"
+            title="Search tasks"
+            hx-get="/form/search"
+            hx-target="dialog"
+            hx-on:htmx:after-request="if (event.detail.successful) { htmx.find('dialog').showModal(); }"
+          >
+
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16" y1="16" x2="20" y2="20"></line>
+            </svg>
+        </li>
+
+        <li class="form-group">
+          <label for="get-all-button">All</label>
+
+          <button
+            class="btn btn-icon btn-outline-warning"
+            title="View all tasks"
+            hx-get="/task"
+            hx-target="#tasks"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+            <path d="M3 3h18v18H3z"></path>
+            </svg>
+          </button>
+        </li>
+
+        <li class="form-group">
+          <label for="get-all-button">About</label>
+
+          <button
+            class="btn btn-icon btn-outline"
+            title="About Task Master"
+            popovertarget="about"
+          >
+            &quest;
+          </button>
+        </li>
+
+        <li>
+          <label for="theme-switch" title="Toggle light/dark mode">
+            Theme
+            <input type="checkbox" class="switch" id="theme-switch" />
+          </label>
+        </li>
+      </menu>
     </header>
 
-    <dialog
-      id="create-task-dialog"
-      class="card"
-      hx-get="components/create.html"
-      hx-trigger="revealed"
-    ></dialog>
+    <article id="about" class="card" popover>
+      <section class="card-header grid">
+        <span class="col-1"></span>
 
-    <dialog id="update-task-dialog" class="card"></dialog>
+        <h2 class="text-center col-10">About Task Master</h2>
 
-    <dialog id="delete-task-dialog" class="card"></dialog>
+        <button
+          class="btn btn-icon btn-outline-danger col-1"
+          title="Close about dialog"
+          popovertarget="about"
+          popovertargetaction="close"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 18L18 6"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </button>
+      </section>
 
+      <p>
+        A <code>Task</code> consists of:
+      </p>
+
+      <ul>
+        <li>
+          <code>ID</code>:
+          <span class="badge">REQUIRED</span>
+          A unique identifier for the task. This is automatically generated
+          when a new task is created, and you can search for tasks by
+          this ID.
+        </li>
+
+        <li>
+          <code>Title</code>:
+          <span class="badge">REQUIRED</span>
+          A brief description of the task.
+        </li>
+
+        <li>
+          <code>Description</code>: 
+          <span class="badge">OPTIONAL</span>
+          A detailed explanation of the task.
+        </li>
+
+        <li>
+          <code>Due Date</code>:
+          <span class="badge">REQUIRED</span>
+          The date by which the task should be completed. When creating a new
+          task the default is 5 minutes from when create was started.
+        </li>
+
+        <li>
+          <code>Status</code>: 
+          <span class="badge">REQUIRED</span>
+          The current state of the task, one of:
+          <ul>
+            <li>
+              <span class="badge badge-secondary">PENDING</span>:
+              The task has not yet been started.
+            </li>
+
+            <li>
+              <span class="badge badge-warning">IN-PROGRESS</span>:
+              The task is currently being worked on.
+            </li>
+
+            <li>
+              <span class="badge badge-success">COMPLETED</span>:
+              The task has been finished.
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </article>
+    
+    <dialog class="card"></dialog>
+    
+    <main id="main-content" class="container">
+      <h2 class="text-center">Your Tasks</h2>
+
+      <section
+        id="tasks"
+        class="content wrapped-row"
+        hx-get="/task"
+        hx-trigger="load once, taskDeleted from:body, taskSearchFailed from:body"
+      ></section>
+      
+    </main>
+    
     <aside id="alerts" class="container"></aside>
 
-    <main id="main-content" class="container">
-      <section
-        hx-get="components/read.html"
-        hx-trigger="revealed, taskDeleted from:body"
-        class="content"
-      ></section>
-    </main>
-
     <footer class="container">
-        <p>&copy; 2025 Dan Kiernan</p>
-        <a href="#header">Back to Top</a>   
+      <p>&copy; 2025 Dan Kiernan</p>
     </footer>
   </body>
 </html>

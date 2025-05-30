@@ -1,31 +1,30 @@
-import { CreateTaskValidator, CreateTaskRequest } from "../../validation";
+const CreateTaskForm = () => {
+  const hxOnCreateSuccessful = {
+    "hx-on:htmx:after-request": "if(event.detail.successful) { htmx.find('dialog').close(); }",
+  }
 
-interface CreateTaskFormProps {
-  errors?: { [key: string]: string };
-  values?: Partial<CreateTaskRequest>;
-}
+  const getDueDateDefaultValue = () => {
+    return `${new Date().getFullYear() + 1}-01-01T00:00`
+  }
 
-const CreateTaskForm = ({ errors = {}, values = {} }: CreateTaskFormProps) => {
   return (
     <form
       id="create-task-form"
       hx-post="/task"
       hx-target="#tasks"
       hx-swap="beforeend"
+      {...hxOnCreateSuccessful}
     >
-      <div className="card-header grid">
+      <section className="card-header grid">
         <span className="col-1"></span>
+        
         <h2 className="text-center col-10">Add New Task</h2>
+        
         <button
           className="btn btn-icon btn-outline-danger col-1"
           type="button"
           title="Cancel Task Creation"
-          onClick={() => {
-            if (typeof window !== 'undefined' && window.htmx) {
-              window.htmx.find('#create-task-form').reset();
-              window.htmx.find('#create-task-dialog').close();
-            }
-          }}
+          x-on:click="htmx.find('dialog').close()"
         >
           <svg
             aria-hidden="true"
@@ -42,70 +41,69 @@ const CreateTaskForm = ({ errors = {}, values = {} }: CreateTaskFormProps) => {
             <path d="M6 6l12 12"></path>
           </svg>
         </button>
-      </div>
+      </section>
 
-      <section className="grid">
-        <div className="form-group col-6">
+      <section className="card-body grid">
+        <div className="form-group col-12">
           <label htmlFor="title">Title</label>
+
           <input
             type="text"
             id="title"
             name="title"
             placeholder="Task title"
             required
-            defaultValue={values.title || ""}
-            className={errors.title ? "form-control error" : "form-control"}
           />
-          <span className="text-danger text-sm">{errors.title}</span>
+
+          <span className="text-danger text-sm"></span>
         </div>
 
-        <div className="form-group col-6">
+        <div className="form-group col-12">
           <label htmlFor="description">Description</label>
+
           <textarea
             id="description"
             name="description"
             placeholder="Task description"
             rows={3}
             maxLength={1000}
-            defaultValue={values.description || ""}
-            className={errors.description ? "form-control error" : "form-control"}
           ></textarea>
-          <span className="text-danger text-sm">{errors.description}</span>
+          
+          <span className="text-danger text-sm"></span>
         </div>
-      </section>
 
-      <section className="grid">
-        <div className="form-group col-6">
+        <div className="form-group col-12">
           <label htmlFor="due-date">Due Date</label>
+
           <input
             type="datetime-local"
-            className={errors.dueDate ? "form-control error" : "form-control"}
             id="due-date"
             name="dueDate"
+            value={getDueDateDefaultValue()}
             required
-            defaultValue={values.dueDate || ""}
           />
-          <span className="text-danger text-sm">{errors.dueDate}</span>
+
+          <span className="text-danger text-sm"></span>
         </div>
 
-        <div className="form-group col-6">
+        <div className="form-group col-12">
           <label htmlFor="status">Status</label>
+
           <select
             id="status"
-            className={errors.status ? "form-control error" : "form-control"}
             name="status"
-            defaultValue={values.status || "pending"}
             required
           >
             <option value="pending">Pending</option>
             <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
           </select>
-          <span className="text-danger text-sm">{errors.status}</span>
+
+          <span className="text-danger text-sm"></span>
         </div>
       </section>
 
-      <section className="wrapped-row">
+      <section className="card-footer wrapped-row">
         <button
           className="btn btn-outline-primary"
           type="submit"
@@ -122,4 +120,4 @@ const CreateTaskForm = ({ errors = {}, values = {} }: CreateTaskFormProps) => {
   );
 };
 
-export { CreateTaskForm, type CreateTaskFormProps };
+export { CreateTaskForm };

@@ -15,7 +15,7 @@ const UpdateTaskForm = ({
 }: UpdateTaskFormProps) => {
   const hxOnUpdateTask = {
     "hx-on:htmx:after-request":
-      'if(event.detail.successful) { this.reset(); htmx.find("#update-task-dialog").close(); }',
+      'if(event.detail.successful) { this.reset(); htmx.find("dialog").close(); }',
   };
 
   return (
@@ -34,7 +34,7 @@ const UpdateTaskForm = ({
           title="Cancel Update"
           type="button"
           class="btn btn-icon btn-outline-danger col-1"
-          x-on:click="htmx.find('#update-task-dialog').close();"
+          x-on:click="htmx.find('dialog').close();"
         >
           <svg
             aria-hidden="true"
@@ -80,7 +80,7 @@ const UpdateTaskForm = ({
           <input
             type="datetime-local"
             id={`due_date-${id}`}
-            name="due_date"
+            name="dueDate"
             class="form-control"
             value={new Date(due_date)
               .toISOString()
@@ -105,7 +105,6 @@ const UpdateTaskForm = ({
           title="Update Task"
           type="submit"
           class="btn btn-outline-secondary"
-          x-on:click="htmx.find('#update-task-dialog').close();"
         >
           Update Task
         </button>

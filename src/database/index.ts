@@ -4,3 +4,4 @@ export {
   TaskRepository,
   type TaskStatus,
 } from "./repositories";
+export { DbContext } from "./context";

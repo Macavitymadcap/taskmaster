@@ -10,7 +10,7 @@ interface CreateTaskResponseProps {
   task?: ReadTaskProps;
 }
 
-export const CreateTaskResponse = ({
+const CreateTaskResponse = ({
   alert,
   task,
 }: CreateTaskResponseProps) => {
@@ -24,3 +24,5 @@ export const CreateTaskResponse = ({
     ${taskHtml}
   `;
 };
+
+export { CreateTaskResponse };

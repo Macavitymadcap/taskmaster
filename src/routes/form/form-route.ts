@@ -1,12 +1,15 @@
 import { Context } from "hono";
-import { TaskRepository } from "../database";
-import { type AlertProps } from "../components";
+import { TaskRepository } from "../../database";
+import { type AlertProps } from "../../components";
 import { 
   GetUpdateTaskFormResponse, 
-  GetDeleteTaskFormResponse 
-} from "../components/";
-import { Container } from "./container";
-import { BaseRoute } from "./base-route";
+  GetDeleteTaskFormResponse,
+  GetCreateTaskFormResponse,
+  GetSearchTasksFormResponse,
+
+} from "../../components";
+import { Container } from "../container/container";
+import { BaseRoute } from "../base-route";
 
 export class FormRoute extends BaseRoute {
   private taskRepository: TaskRepository;
@@ -17,12 +20,24 @@ export class FormRoute extends BaseRoute {
   }
 
   protected initializeRoutes(): void {
+    this.app.get("/create", this.getCreateTaskForm.bind(this));
+    this.app.get("/search", this.getSearchTasksForm.bind(this));
     this.app.get("/update/:id", this.getUpdateTaskForm.bind(this));
     this.app.get("/delete/:id", this.getDeleteTaskForm.bind(this));
   }
 
   private getCreateTaskForm(context: Context): Response {
-    return context.html("<h1>Create Task Form</h1>");
+
+    return context.html(
+      GetCreateTaskFormResponse(),
+    );
+  }
+
+  private getSearchTasksForm(context: Context): Response {
+
+    return context.html(
+      GetSearchTasksFormResponse(),
+    );
   }
 
   private getUpdateTaskForm(context: Context): Response {

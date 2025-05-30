@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeEach, mock } from "bun:test";
 import { TaskRoute } from "./task-route";
-import { TaskRepository } from "../database";
-import { Container } from "./container";
+import { TaskRepository } from "../../database";
+import { Container } from "../container/container";
 
 describe("TaskRoute", () => {
   let mockTaskRepository: Partial<TaskRepository>;
@@ -59,7 +59,7 @@ describe("TaskRoute", () => {
     formData.append("title", "New Task");
     formData.append("description", "New Description");
     formData.append("status", "pending");
-    formData.append("due_date", "2025-12-31");
+    formData.append("dueDate", "2025-12-31");
 
     // Act
     const response = await app.request("/", {
