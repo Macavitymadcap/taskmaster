@@ -224,11 +224,19 @@
         class="content wrapped-row"
         hx-get="/task"
         hx-trigger="load once, taskDeleted from:body, taskSearchFailed from:body"
+        hx-indicator="#loading"
       ></section>
       
     </main>
     
-    <aside id="alerts" class="container"></aside>
+    <aside id="alerts" class="container">
+      <div
+      id="loading"
+        class="alert alert-primary htmx-indicator"
+      >
+        <strong>Loading...</strong>
+      </div>
+    </aside>
 
     <footer class="container">
       <p>&copy; 2025 Dan Kiernan</p>

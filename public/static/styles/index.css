@@ -123,3 +123,12 @@
     grid-column: span 12;
   }
 }
+
+/* Ensure dialog content doesn't overflow on small screens */
+@media (max-width: 576px) {
+  dialog {
+    width: 95vw;
+    max-height: 85vh;
+    padding: var(--space-sm);
+  }
+}
